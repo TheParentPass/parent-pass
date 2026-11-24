@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<title>Parent Pass – Your pass into the games your kids play</title>
+<style>
+:root{
+  --ink:#17203a; --ink-2:#4a5571; --line:#d9dfea; --fog:#eef1f7; --paper:#ffffff;
+  --cobalt:#2340b0; --cobalt-soft:#e4e9fb; --ticket:#ffd447; --ticket-soft:#fff6d6;
+  --red:#c8372c; --red-soft:#fbe7e5; --amber:#c07a00; --amber-soft:#fff1d4; --green:#23824f; --green-soft:#e2f3e9;
+  --c-roblox:#3b4a6b; --c-brawl:#d98a00; --c-mine:#3f8a3a; --c-fort:#6a46d6;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",Verdana,"Segoe UI",system-ui,sans-serif;
+  --stub:178px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fog);color:var(--ink);font:18px/1.6 var(--body)}
+a{color:var(--cobalt);text-underline-offset:3px;text-decoration-thickness:1.5px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ticket);outline-offset:2px;border-radius:6px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ic{width:24px;height:24px;flex:none}
+
+/* top bar */
+.topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .in{max-width:1120px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font:800 21px/1 var(--display);letter-spacing:-.02em;color:var(--ink);text-decoration:none;margin-right:auto}
+.logo-ic{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--cobalt);color:var(--ticket);transform:rotate(-8deg)}
+.logo-ic .ic{width:26px;height:26px}
+.topbar nav{display:flex;gap:2px;flex-wrap:wrap}
+.topbar nav a{color:var(--ink-2);text-decoration:none;font-size:15px;padding:7px 11px;border-radius:8px}
+.topbar nav a:hover{color:var(--ink);background:var(--fog)}
+.topbar nav a.on{color:var(--cobalt);background:var(--cobalt-soft);font-weight:700}
+
+main{max-width:1120px;margin:0 auto;padding:30px 22px 90px}
+section.page{display:none}
+section.page.on{display:block}
+section.page p,section.page li{max-width:72ch}
+
+h1,h2,h3{font-family:var(--display);color:var(--ink);letter-spacing:-.015em}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.04;font-weight:800;margin:0 0 14px}
+h2{font-size:clamp(24px,3vw,30px);line-height:1.15;font-weight:700;margin:52px 0 14px}
+h3{font-size:20px;line-height:1.25;font-weight:700;margin:24px 0 6px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px;padding-left:24px}
+li{margin-bottom:7px}
+strong,b{font-weight:700}
+.lede{font-size:21px;line-height:1.5;color:var(--ink-2)}
+.checked{font-size:15px;color:var(--ink-2);margin:10px 0 0}
+
+/* ---------- the pass (signature element) ---------- */
+.pass{position:relative;display:grid;grid-template-columns:1fr var(--stub);background:var(--paper);border-radius:18px;
+  box-shadow:0 1px 0 rgba(23,32,58,.06),0 10px 24px -12px rgba(23,32,58,.25);color:var(--ink);text-decoration:none}
+.pass::before,.pass::after{content:"";position:absolute;right:calc(var(--stub) - 11px);width:22px;height:22px;border-radius:50%;background:var(--fog)}
+.pass::before{top:-11px}.pass::after{bottom:-11px}
+.pass-main{padding:22px 26px;border-top:8px solid var(--gc);border-radius:18px 0 0 18px}
+.pass-stub{padding:20px 18px;border-left:2px dashed var(--line);border-top:8px solid var(--gc);border-radius:0 18px 18px 0;display:flex;flex-direction:column;gap:12px;justify-content:center;background:linear-gradient(180deg,#fbfcfe,#f5f7fb)}
+.glyph{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--gc);color:#fff;flex:none}
+.glyph .ic{width:30px;height:30px}
+
+.meter{display:grid;grid-template-columns:1fr;gap:4px}
+.meter .mlabel{font-size:13px;color:var(--ink-2);line-height:1.2}
+.meter .segs{display:flex;gap:4px}
+.meter .segs i{flex:1;height:8px;border-radius:4px;background:#e3e7ef}
+.meter.low .segs i.on{background:var(--green)}
+.meter.med .segs i.on{background:var(--amber)}
+.meter.high .segs i.on{background:var(--red)}
+.meter b{font-size:15px;line-height:1.1}
+.meter.low b{color:var(--green)}.meter.med b{color:var(--amber)}.meter.high b{color:var(--red)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:center;padding:24px 0 34px}
+.hero h1{font-size:clamp(40px,6vw,66px);max-width:12ch}
+.searchwrap{display:block;margin-top:22px;max-width:560px;position:relative}
+.search{width:100%;font:18px var(--body);color:var(--ink);padding:16px 18px 16px 52px;border:2px solid var(--ink);border-radius:14px;background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='none' stroke='%2317203a' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='9.5' cy='9.5' r='6.5'/%3E%3Cpath d='M14.5 14.5l5 5'/%3E%3C/svg%3E") no-repeat 18px center;box-shadow:4px 4px 0 var(--ticket)}
+.search:focus{outline:none;box-shadow:4px 4px 0 var(--cobalt)}
+.hint{font-size:15px;color:var(--red);min-height:1px;margin-top:8px}
+.fan{position:relative;height:370px}
+.mini{position:absolute;left:12%;width:270px;height:86px;background:var(--paper);border-radius:14px;border-left:8px solid var(--gc);
+  display:flex;align-items:center;gap:14px;padding:0 70px 0 16px;box-shadow:0 14px 28px -14px rgba(23,32,58,.45);
+  transform:rotate(var(--r));animation:deal .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+.mini:nth-child(1){top:0;left:6%}
+.mini:nth-child(2){top:90px;left:24%}
+.mini:nth-child(3){top:180px;left:10%}
+.mini:nth-child(4){top:270px;left:28%}
+.mini .glyph{width:44px;height:44px;border-radius:11px}
+.mini .glyph .ic{width:26px;height:26px}
+.mini b{font:700 20px var(--display);white-space:nowrap}
+.mini-stub{position:absolute;right:0;top:0;bottom:0;width:56px;border-left:2px dashed var(--line);border-radius:0 14px 14px 0;
+  background:radial-gradient(circle at 50% 50%,var(--gc) 0 6px,transparent 7px)}
+@keyframes deal{from{opacity:0;transform:translate(60px,30px) rotate(12deg)}to{opacity:1;transform:rotate(var(--r))}}
+
+.passes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.pass-card{transition:transform .15s ease}
+.pass-card:hover{transform:translateY(-2px)}
+.pass-card .pass-main{display:flex;flex-direction:column;align-items:flex-start}
+.pass-card h3{font-size:25px;margin:14px 0 4px}
+.pass-card p{color:var(--ink-2);font-size:16px;margin:0 0 14px}
+.pass-card .open{margin-top:auto;font-weight:700;color:var(--cobalt);text-decoration:underline;text-underline-offset:3px;font-size:16px}
+
+/* game page header */
+.pass-hero{margin-bottom:14px}
+.pass-hero .pass-main{padding:28px 30px}
+.pass-title{display:flex;gap:18px;align-items:flex-start}
+.pass-title .glyph{width:64px;height:64px;border-radius:16px}
+.pass-title .glyph .ic{width:38px;height:38px}
+.pass-hero h1{margin:0 0 4px}
+.pass-line{font-size:19px;color:var(--ink-2);margin:0}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 22px;margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line)}
+.fields dt{font-size:13px;color:var(--ink-2)}
+.fields dd{margin:0;font-weight:700;font-size:16px;line-height:1.35}
+.pass-hero .pass-stub{--stub:200px}
+.stub-h{font:700 14px/1.25 var(--display);color:var(--ink)}
+.stub-foot{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:10px}
+.pagebar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 0;padding:10px 0;position:sticky;top:59px;z-index:5;background:var(--fog)}
+.jump{display:flex;gap:6px;flex-wrap:wrap}
+.jump a{font-size:15px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none;color:var(--ink)}
+.jump a:hover{border-color:var(--cobalt);color:var(--cobalt)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 15px var(--body);border-radius:10px;padding:8px 14px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn .ic{width:18px;height:18px}
+
+/* "this month" note */
+.now{position:relative;background:var(--ticket-soft);border:2px solid var(--ink);border-radius:16px;padding:30px 28px 18px;margin:34px 0 22px;box-shadow:6px 6px 0 var(--ticket)}
+.now .pin{position:absolute;top:-15px;left:22px;background:var(--ticket);border:2px solid var(--ink);border-radius:8px;padding:2px 12px;font:700 14px var(--display);transform:rotate(-2deg)}
+.now h2{margin-top:0}
+.games{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));margin:6px 0 4px}
+.game{background:var(--paper);border:1px solid #ecdca3;border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.game b{display:block;font:700 18px var(--display);margin-bottom:4px}
+
+/* generic blocks */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:12px 0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px 26px;font-size:16px}
+.gloss div{padding:6px 0;border-bottom:1px dashed var(--line)}
+.callout{border-radius:12px;padding:16px 20px;margin:18px 0;border-left:5px solid}
+.callout.blue{background:var(--cobalt-soft);border-color:var(--cobalt)}
+.callout.amber{background:var(--amber-soft);border-color:var(--amber)}
+.callout.green{background:var(--green-soft);border-color:var(--green)}
+.callout.red{background:var(--red-soft);border-color:var(--red)}
+
+/* risks */
+.risk{display:block;border-left:0;padding:18px 22px 16px}
+.risk h3{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 8px;font-size:20px}
+.risk-ic{width:40px;height:40px;padding:8px;border-radius:11px}
+.risk.high .risk-ic{background:var(--red-soft);color:var(--red)}
+.risk.med .risk-ic{background:var(--amber-soft);color:var(--amber)}
+.risk.low .risk-ic{background:var(--green-soft);color:var(--green)}
+.risk p{margin:0;padding-left:52px}
+.tag{display:inline-block;font:700 13px/1 var(--body);padding:5px 10px;border-radius:999px;white-space:nowrap;text-transform:none;letter-spacing:0}
+.tag.high{background:var(--red-soft);color:var(--red)}
+.tag.med{background:var(--amber-soft);color:var(--amber)}
+.tag.low{background:var(--green-soft);color:var(--green)}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rule{background:var(--paper);border-radius:16px;padding:22px;border:1px solid var(--line)}
+.rule .ic{width:46px;height:46px;padding:10px;border-radius:12px;background:var(--cobalt);color:#fff}
+.rule h3{margin:14px 0 6px}
+.rule p{font-size:16px;color:var(--ink-2);margin:0}
+
+/* tables */
+table{width:100%;border-collapse:collapse;background:var(--paper);font-size:16px;margin:12px 0 22px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+th,td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--ink);color:#fff;font:700 15px var(--display)}
+td .tag{margin:2px 0}
+
+/* steps (real sequences) */
+.steps{counter-reset:s;list-style:none;padding-left:0}
+.steps li{counter-increment:s;position:relative;padding:2px 0 4px 50px;margin-bottom:14px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:10px;background:var(--cobalt);color:#fff;font:800 16px/34px var(--display);text-align:center}
+.steps li::after{content:"";position:absolute;left:16px;top:38px;bottom:-12px;width:2px;background:var(--cobalt-soft)}
+.steps li:last-child::after{display:none}
+
+/* questions */
+.ask{background:var(--cobalt);color:#fff;border-radius:18px;padding:26px 28px;margin:30px 0}
+.ask h2{color:#fff;margin:0 0 16px}
+.ask ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.ask li{background:#fff;color:var(--ink);border-radius:16px 16px 16px 4px;padding:12px 16px;margin:0;font-size:17px;max-width:none}
+
+.srcs{font-size:14px;color:var(--ink-2)}
+.srcs li{margin-bottom:3px;word-break:break-word}
+h3 + .srcs{margin-top:4px}
+
+footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;color:var(--ink-2);display:flex;gap:16px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line)}
+.flogo{display:flex;align-items:center;gap:8px;font:800 16px var(--display);color:var(--ink)}
+.flogo .ic{color:var(--cobalt)}
+.hide{display:none!important}
+[id]{scroll-margin-top:130px}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .fan{display:none}
+  .passes{grid-template-columns:1fr}
+  .rules{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .topbar{position:static}
+  .pagebar{top:0}
+  [id]{scroll-margin-top:70px}
+  .pass{grid-template-columns:1fr}
+  .pass::before,.pass::after{display:none}
+  .pass-main{border-radius:18px 18px 0 0}
+  .pass-stub{border-left:0;border-top:2px dashed var(--line);border-radius:0 0 18px 18px;flex-direction:row;flex-wrap:wrap}
+  .pass-stub .meter{flex:1 1 130px}
+  .stub-h,.stub-foot{flex-basis:100%}
+  .pass-hero .pass-main{padding:22px 20px}
+  .pass-title .glyph{width:52px;height:52px}
+  .two{grid-template-columns:1fr}
+  .risk p{padding-left:0}
+  .topbar nav a{padding:5px 8px;font-size:14px}
+  .now{padding:28px 18px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  .topbar,.pagebar,footer,.searchwrap,.fan{display:none!important}
+  body{background:#fff;font-size:11.5pt}
+  main{padding:0;max-width:none}
+  .pass,.card,.now,.rule{box-shadow:none;border:1px solid #999}
+  .pass::before,.pass::after{display:none}
+  .ask{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+  .ask h2{color:var(--ink)}
+  .ask li{border:1px solid #999}
+  .card,.risk,.now,.callout,.game,table,.pass{break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="in">
+  <a class="logo" href="#home"><span class="logo-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h15A1.5 1.5 0 0 1 21 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5V14a2 2 0 0 0 0-4z"/><path d="M15 6.5v11" stroke-dasharray="1.6 2"/></svg></span>Parent Pass</a>
+  <nav id="nav">
+    <a href="#home">Home</a>
+    <a href="#roblox">Roblox</a>
+    <a href="#brawl">Brawl Stars</a>
+    <a href="#minecraft">Minecraft</a>
+    <a href="#fortnite">Fortnite</a>
+    <a href="#findout">Find out what they play</a>
+    <a href="#words">Words kids use</a>
+    <a href="#help">Get help</a>
+  </nav>
+</div></div>
+
+<main>
+
+<!-- ============================ HOME ============================ -->
+<section class="page" id="home">
+  <div class="hero">
+    <div class="hero-copy">
+      <h1>Know the games your kids play</h1>
+      <p class="lede">What children are really doing in each game, what's popular this month, and how to set the parental controls, explained in plain English.</p>
+      <label class="searchwrap"><span class="sr">Search for a game</span>
+        <input class="search" id="q" type="search" placeholder="Search a game or word, like Adopt Me or V-Bucks"></label>
+      <div id="qhint" class="hint" aria-live="polite"></div>
+      <p class="checked">Checked 24 November 2026. "Right now" notes are reviewed every week.</p>
+    </div>
+    <div class="fan" aria-hidden="true"><div class="mini" style="--gc:var(--c-roblox);--r:-9deg;--d:0ms"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="15.5" cy="11.3" r="1.1" fill="currentColor"/><circle cx="18" cy="13.8" r="1.1" fill="currentColor"/></svg></span><b>Roblox</b><span class="mini-stub"></span></div><div class="mini" style="--gc:var(--c-brawl);--r:-3deg;--d:90ms"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l2.6 5.6 6.1.7-4.5 4.2 1.2 6.1L12 16.4l-5.4 3 1.2-6.1-4.5-4.2 6.1-.7z"/></svg></span><b>Brawl Stars</b><span class="mini-stub"></span></div><div class="mini" style="--gc:var(--c-mine);--r:3deg;--d:180ms"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/><path d="M4 10.2l8 4.4 8-4.4" opacity=".45"/></svg></span><b>Minecraft</b><span class="mini-stub"></span></div><div class="mini" style="--gc:var(--c-fort);--r:9deg;--d:270ms"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5C3 7.4 7 4 12 4s9 3.4 9 7.5"/><path d="M3 11.5c1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0"/><path d="M3 11.5l7.6 7.5M21 11.5l-7.6 7.5M12 11.5V19"/><rect x="10.3" y="18.5" width="3.4" height="3" rx=".8"/></svg></span><b>Fortnite</b><span class="mini-stub"></span></div></div>
+  </div>
+
+  <h2 class="sr">Choose a game</h2>
+  <div class="passes" id="cards">
+<a class="pass pass-card" href="#roblox" data-k="roblox robux brookhaven adopt me steal an egg brainrot blox fruits 99 nights murder mystery rivals dandy" style="--gc:var(--c-roblox)">
+      <div class="pass-main"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="15.5" cy="11.3" r="1.1" fill="currentColor"/><circle cx="18" cy="13.8" r="1.1" fill="currentColor"/></svg></span><h3>Roblox</h3><p>A platform of millions of games made by other players, from pet games to horror.</p><span class="open">Open the Roblox guide</span></div>
+      <div class="pass-stub"><div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div><div class="meter med"><span class="mlabel">With controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div></div>
+    </a>
+<a class="pass pass-card" href="#brawl" data-k="brawl stars supercell gems brawl pass club brawler starr drop" style="--gc:var(--c-brawl)">
+      <div class="pass-main"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l2.6 5.6 6.1.7-4.5 4.2 1.2 6.1L12 16.4l-5.4 3 1.2-6.1-4.5-4.2 6.1-.7z"/></svg></span><h3>Brawl Stars</h3><p>Fast 2–3 minute team battles on phones and tablets.</p><span class="open">Open the Brawl Stars guide</span></div>
+      <div class="pass-stub"><div class="meter med"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div><div class="meter low"><span class="mlabel">With controls</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div></div>
+    </a>
+<a class="pass pass-card" href="#minecraft" data-k="minecraft realms server minecoins marketplace java bedrock mods hive cubecraft dungeons" style="--gc:var(--c-mine)">
+      <div class="pass-main"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/><path d="M4 10.2l8 4.4 8-4.4" opacity=".45"/></svg></span><h3>Minecraft</h3><p>Building and survival in a world of blocks, alone or with others.</p><span class="open">Open the Minecraft guide</span></div>
+      <div class="pass-stub"><div class="meter med"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div><div class="meter low"><span class="mlabel">With controls</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div></div>
+    </a>
+<a class="pass pass-card" href="#fortnite" data-k="fortnite epic v-bucks battle pass lego festival creative island chapter 8 cabined" style="--gc:var(--c-fort)">
+      <div class="pass-main"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5C3 7.4 7 4 12 4s9 3.4 9 7.5"/><path d="M3 11.5c1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0"/><path d="M3 11.5l7.6 7.5M21 11.5l-7.6 7.5M12 11.5V19"/><rect x="10.3" y="18.5" width="3.4" height="3" rx=".8"/></svg></span><h3>Fortnite</h3><p>100-player battles, plus LEGO, music and player-made islands.</p><span class="open">Open the Fortnite guide</span></div>
+      <div class="pass-stub"><div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div><div class="meter med"><span class="mlabel">With controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div></div>
+    </a>
+  </div>
+
+  <div class="now"><span class="pin">This month</span>
+    <h2>Coming up: the December spending peak</h2>
+    <p>December is the biggest month of the year for in-game events and spending. All four games are running or planning seasonal events:</p>
+    <ul>
+      <li><strong>Fortnite</strong> ends its current chapter with a live event on <strong>5 December</strong>, followed by a new map ("Chapter 8") and a new Battle Pass. A Christmas "Winterfest" event usually follows.</li>
+      <li><strong>Brawl Stars</strong> is building up to its "Brawlidays" holiday event, with festive skins and offers.</li>
+      <li><strong>Minecraft</strong> has a winter update ("Deep Freeze") due before the end of the year.</li>
+      <li><strong>Roblox</strong> games run their own Christmas events, often with limited-time items to buy.</li>
+    </ul>
+    <p><strong>Giving gift cards this year?</strong> Robux and V-Bucks gift cards are a good way to set a fixed budget, because your card isn't saved on the account. Agree in advance what it's for, and remember that once Robux or V-Bucks are spent, they can't be refunded or turned back into money.</p>
+  </div>
+
+  <h2>At a glance</h2>
+  <table>
+    <tr><th>Game</th><th>Official age rating</th><th>Can strangers talk to my child?</th><th>Spending pressure</th><th>Biggest thing to set up</th></tr>
+    <tr><td><a href="#roblox"><b>Roblox</b></a></td><td>Varies by store. Roblox itself uses content labels per game</td><td>Yes, in-game, unless a parent turns chat off</td><td>Very high</td><td>Link a parent account; chat off or real-life friends only</td></tr>
+    <tr><td><a href="#brawl"><b>Brawl Stars</b></a></td><td>PEGI 16 since October 2026 because of paid random items (was PEGI 7). Check the label in your app store</td><td>Text chat in clubs and teams; no voice chat</td><td>High</td><td>Purchase approval on the phone or tablet; time limits</td></tr>
+    <tr><td><a href="#minecraft"><b>Minecraft</b></a></td><td>PEGI 7</td><td>Only on multiplayer servers, Realms or online worlds</td><td>Low–moderate</td><td>Microsoft Family settings: multiplayer and chat</td></tr>
+    <tr><td><a href="#fortnite"><b>Fortnite</b></a></td><td>PEGI 12</td><td>Yes, voice and text chat, if a parent allows it</td><td>High</td><td>Epic parental controls with a PIN</td></tr>
+  </table>
+
+  <h2>The three rules that protect children in every game</h2>
+  <div class="rules">
+    <div class="rule"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2.5 19.5c.5-3 2.6-5 5.5-5s5 2 5.5 5M13.5 15c.8-.4 1.6-.5 2.5-.5 2.9 0 5 2 5.5 5"/></svg><h3>Friends they know in real life</h3><p>Only add or play with people your child has met in person. Most serious harm starts with a friendly stranger.</p></div>
+    <div class="rule"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5"/></svg><h3>Never move to another app</h3><p>Anyone who asks to chat on Discord, Snapchat or WhatsApp, or asks for photos, is a red flag. Report, block and tell an adult.</p></div>
+    <div class="rule"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><h3>Telling you is always the right thing</h3><p>Children often keep problems to themselves because they're afraid of losing the game or their device. Tell them they won't be in trouble, and that you won't take the game away because they told you. Stay calm, thank them, and work out the next step together. If family rules or settings need to change, talk about it together once things are calm.</p></div>
+  </div>
+
+  <h2>How this guide works</h2>
+  <p>Games change fast: Roblox changed its safety system several times in under two years. Every guide shows a <strong>"last checked"</strong> date. The "Right now" notes are checked every week, and the parental-control steps every month. If anything here doesn't match what you see in the app, trust the app and let us know. <a href="#about">Read about how this guide is checked</a></p>
+</section>
+
+<!-- ============================ ROBLOX ============================ -->
+<section class="page" id="roblox">
+  <div class="pass pass-hero" style="--gc:var(--c-roblox)">
+    <div class="pass-main">
+      <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="15.5" cy="11.3" r="1.1" fill="currentColor"/><circle cx="18" cy="13.8" r="1.1" fill="currentColor"/></svg></span><div><h1>Roblox</h1><p class="pass-line">Not one game but millions of them, all made by other players.</p></div></div>
+      <dl class="fields"><div><dt>Made by</dt><dd>Roblox Corporation</dd></div><div><dt>Age rating</dt><dd>Content labels per game</dd></div><div><dt>Devices</dt><dd>Phone, tablet, PC, Xbox, PlayStation</dd></div><div><dt>Chat</dt><dd>Text; voice only for older teens</dd></div><div><dt>Cost</dt><dd>Free; spending via Robux</dd></div></dl>
+    </div>
+    <div class="pass-stub">
+      <div class="stub-h">Our rating for primary-age children</div>
+      <div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div>
+      <div class="meter med"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div>
+      <div class="stub-foot">Checked 24 November 2026</div>
+    </div>
+  </div>
+  <div class="pagebar">
+    <nav class="jump" aria-label="On this page"><a href="#r-what">What they do</a><a href="#r-now">Popular right now</a><a href="#r-risks">Risks</a><a href="#r-controls">Parental controls</a><a href="#r-ask">Talk about it</a></nav>
+    <button class="btn ghost printbtn" onclick="window.print()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3.5h10V9M7 17H4.5V9h15v8H17"/><rect x="7" y="14" width="10" height="6.5"/></svg>Print this guide</button>
+  </div>
+
+  <h2 id="r-what">What your child is actually doing</h2>
+  <p>Think of Roblox as <strong>YouTube for games</strong>. Your child opens the app and picks from a huge library of games ("experiences") made by other users: companies, adults, and teenagers. One moment they're raising a pet, the next they're in an obstacle course, a role-play town, a shooter, or a horror game.</p>
+  <p><strong>A typical 20 minutes:</strong> they join a game with 10–50 other players (often strangers, sometimes classmates), complete a loop like "collect, upgrade, collect more", get offered something to buy with Robux, then hop to another game a friend is playing. Many children also <em>build</em> their own games in Roblox Studio, which is where most of the learning happens.</p>
+  <p><strong>Why they love it:</strong> it's where their friends are, there's always something new, and it's completely theirs. Being left out of the Roblox conversation at school feels like a big deal to them.</p>
+
+  <div class="now" id="r-now"><span class="pin">Checked weekly</span>
+    <h2>Popular right now (November 2026)</h2>
+    <p>The most-played games change almost weekly. These were near the top of the charts in November:</p>
+    <div class="games">
+      <div class="game"><b>Steal an Egg</b>Released July 2026 and currently #1. Players steal eggs from guarded nests, hatch them into pets that earn in-game money, and protect their base from other players. It's rated <em>Minimal</em> (all ages), but it has large Discord fan servers for trading and giveaways. Those are off-platform spaces that Roblox's protections don't cover.</div>
+      <div class="game"><b>Brookhaven RP</b>A role-play town: houses, cars, jobs, "families". Gentle on the surface, but role-play games are where inappropriate role-play by strangers tends to happen. Keep chat limited.</div>
+      <div class="game"><b>Adopt Me!</b>Adopt and raise pets, then trade them. Trading means trading scams. Children regularly lose rare pets to "trust trades".</div>
+      <div class="game"><b>Blox Fruits</b>An anime-style fighting adventure with a very long grind and lots of paid boosts.</div>
+      <div class="game"><b>99 Nights in the Forest</b>Survive 99 nights in a dark forest with friends. Mildly scary, with a strong team element.</div>
+      <div class="game"><b>Murder Mystery 2 &amp; RIVALS</b>MM2: one player is secretly the murderer. RIVALS: a competitive shooter. Both have large markets for weapon skins.</div>
+      <div class="game"><b>Dandy's World</b>A horror-style survival game that got its big "1.0" update on 20 November. Can genuinely frighten younger children.</div>
+      <div class="game"><b>Steal a Brainrot</b>Collect and steal "brainrot" meme characters. This is where many of the nonsense Italian-sounding names children chant at home come from.</div>
+    </div>
+    <p style="margin-top:12px"><strong>What's changed this year:</strong> since January, an age check (a face scan or ID) is needed to use chat. Since June, children are placed in <strong>Roblox Kids (5–8)</strong> or <strong>Roblox Select (9–15)</strong> accounts with a smaller, vetted set of games. These changes help, but they've already been bypassed. Age-verified accounts were sold online within days, and Australia's regulator still found adults able to contact children in 2026.</p>
+  </div>
+
+  <h2>Words you'll hear</h2>
+  <div class="gloss card">
+    <div><b>Robux</b>: the currency, bought with real money</div>
+    <div><b>Experience</b>: a single game</div>
+    <div><b>Obby</b>: an obstacle course</div>
+    <div><b>Tycoon / Simulator</b>: collect, upgrade, repeat</div>
+    <div><b>RP</b>: role-play</div>
+    <div><b>Trade / Trust trade</b>: swapping items. "Trust trades" are a classic scam</div>
+    <div><b>Trusted Connection</b>: a friend known in real life, which unlocks more chat</div>
+    <div><b>Game pass / Dev product</b>: paid extras inside a game</div>
+  </div>
+
+  <h2>What's good about it</h2>
+  <ul>
+    <li><strong>Creativity and coding.</strong> Roblox Studio is a real game engine, and many children's first programming happens there.</li>
+    <li><strong>Social play</strong> with real-life friends after school.</li>
+    <li><strong>Problem-solving and teamwork</strong> in many of the games.</li>
+  </ul>
+
+  <h2 id="r-risks">The real risks</h2>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4z"/></svg><span>Contact from strangers and grooming </span><span class="tag high">Most serious</span></h3><p>The pattern seen in court cases and regulator findings: an adult, often posing as a child, befriends a child in a game, offers Robux or gifts, then moves the chat to Discord or Snapchat, where there are fewer protections. Roblox blocks images and links in chat, which is exactly why predators try to move children elsewhere.</p></div>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.6 0-2.6.8-2.6 2s1 1.6 2.6 2 2.6.8 2.6 2-1 2-2.6 2c-1.2 0-2.1-.5-2.6-1.3M12 6.5V8M12 16v1.5"/></svg><span>Spending pressure </span><span class="tag high">Very common</span></h3><p>A 2026 University of Sydney study found pressure to spend in 14 of the 15 popular Roblox games it examined, often designed in ways that mislead children about the real cost: layered currencies, timed shops and paid "revives". The EU is investigating Roblox over these "dark patterns".</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Unsuitable content </span><span class="tag med">Common</span></h3><p>With millions of user-made games, violent, sexual or frightening content gets past moderation, sometimes in games that look child-friendly.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v10.5a4.5 4.5 0 1 1-9 0V12"/><path d="M5 12l-2 2.5M14 3h3"/></svg><span>Scams and account theft </span><span class="tag med">Common</span></h3><p>Common examples are "free Robux" sites, fake trades, and phishing links. Lost items are rarely returned.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3 20c.4-3.4 2.8-5.6 6-5.6s5.6 2.2 6 5.6M15.5 14.6c2.8.1 4.9 2 5.3 5"/></svg><span>Bullying and exclusion </span><span class="tag med">Common</span></h3><p>Playground conflicts carry into games and back into school.</p></div>
+
+  <h2>Reduce the risk: the five things that matter most</h2>
+  <ol>
+    <li><strong>Correct birth date</strong> on the account. Every protection depends on it.</li>
+    <li><strong>Link your own parent account</strong> so you control the settings.</li>
+    <li><strong>Chat off, or real-life friends only.</strong></li>
+    <li><strong>Spending limit set</strong>, with no card saved on the device.</li>
+    <li><strong>Talk regularly</strong>: what are you playing, and who with?</li>
+  </ol>
+
+  <h2 id="r-controls">Set up parental controls, step by step</h2>
+  <ol class="steps">
+    <li><strong>On your child's account:</strong> go to Settings › Parental Controls › <em>Add parent</em>, then enter your email address.</li>
+    <li><strong>Follow the email</strong> to create your own Roblox account and verify you're an adult. You may also be asked to create a Parent PIN, which lets you approve your child's requests quickly.</li>
+    <li><strong>From your own phone:</strong> Settings › Parental Controls › choose your child › <em>Settings you manage</em>.</li>
+    <li><strong>Content restrictions:</strong> set the maturity level (Minimal or Mild for younger children). You can also block specific games, or require your approval for new ones.</li>
+    <li><strong>Communication:</strong> turn chat off, or limit it to friends. Leave one-to-one (direct) chat off.</li>
+    <li><strong>Spending:</strong> set a monthly limit, or zero. Turn on notifications for purchases.</li>
+    <li><strong>Screen time:</strong> set a daily limit.</li>
+    <li><strong>Security:</strong> turn on 2-step verification. Review the friends list together and remove anyone your child hasn't met.</li>
+  </ol>
+  <div class="callout amber"><strong>Age check:</strong> to chat, your child will be asked to do a face scan (run by a company called Persona, which Roblox says deletes images straight away) or an ID check. If you'd rather avoid this, simply leave chat off. Playing doesn't require a check.</div>
+  <p class="checked">Menu names may differ slightly by device and region. Roblox's own guide: about.roblox.com/parents</p>
+
+  <div class="ask" id="r-ask"><h2>Questions to ask your child</h2><ul>
+    <li>"What's your favourite Roblox game at the moment? Can you show me how it works?"</li>
+    <li>"Who do you usually play with? Do you know them from school?"</li>
+    <li>"Has anyone ever offered you free Robux or asked you to talk somewhere else?"</li>
+    <li>"What would you do if someone made you feel weird in a game?"</li>
+  </ul></div>
+
+  <h3>Sources</h3>
+  <ul class="srcs">
+    <li>Roblox: Kids &amp; Select accounts; Safety by age; Age checks required to chat (2026) – about.roblox.com</li>
+    <li>eSafety Commissioner (Australia): court-enforceable undertaking from Roblox, Aug 2026</li>
+    <li>Netherlands ACM: Digital Services Act investigation into Roblox, Jan 2026</li>
+    <li>University of Sydney: Misleading and Deceptive Monetisation in Roblox, May 2026</li>
+    <li>Wired / The Next Web / 9to5Mac: age-check bypasses and sale of verified accounts, Jan 2026</li>
+    <li>Player-count charts (geeiq.com, statroblox.com, endgametools.com), 18–20 Nov 2026; rotrends.com (Steal an Egg rating); Discord server listings</li>
+  </ul>
+</section>
+
+<!-- ============================ BRAWL STARS ============================ -->
+<section class="page" id="brawl">
+  <div class="pass pass-hero" style="--gc:var(--c-brawl)">
+    <div class="pass-main">
+      <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l2.6 5.6 6.1.7-4.5 4.2 1.2 6.1L12 16.4l-5.4 3 1.2-6.1-4.5-4.2 6.1-.7z"/></svg></span><div><h1>Brawl Stars</h1><p class="pass-line">Quick, colourful team battles, designed for "just one more game".</p></div></div>
+      <dl class="fields"><div><dt>Made by</dt><dd>Supercell</dd></div><div><dt>Age rating</dt><dd>PEGI 16 for paid random items (was PEGI 7)</dd></div><div><dt>Devices</dt><dd>Phones and tablets</dd></div><div><dt>Chat</dt><dd>Text in clubs and teams; no voice</dd></div><div><dt>Cost</dt><dd>Free; spending via gems</dd></div></dl>
+    </div>
+    <div class="pass-stub">
+      <div class="stub-h">Our rating for primary-age children</div>
+      <div class="meter med"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div>
+      <div class="meter low"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div>
+      <div class="stub-foot">Checked 24 November 2026</div>
+    </div>
+  </div>
+  <div class="pagebar">
+    <nav class="jump" aria-label="On this page"><a href="#b-what">What they do</a><a href="#b-now">Right now</a><a href="#b-risks">Risks</a><a href="#b-controls">Parental controls</a><a href="#b-ask">Talk about it</a></nav>
+    <button class="btn ghost printbtn" onclick="window.print()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3.5h10V9M7 17H4.5V9h15v8H17"/><rect x="7" y="14" width="10" height="6.5"/></svg>Print this guide</button>
+  </div>
+
+  <h2 id="b-what">What your child is actually doing</h2>
+  <p>Your child picks a character (a "Brawler"), each with its own attack and super-move, and fights in <strong>short matches of about 2–3 minutes</strong>, usually 3 players against 3. The violence is cartoonish: characters "faint" and pop back up. The main modes include <em>Gem Grab</em> (collect and hold gems), <em>Brawl Ball</em> (football with attacks), <em>Showdown</em> (last one standing), <em>Heist</em> and <em>Knockout</em>.</p>
+  <p><strong>A typical session:</strong> play a match, win or lose trophies, open rewards, upgrade a Brawler, and play again. Because each match is so short, "five more minutes" easily turns into an hour. Many children join a <strong>Club</strong>, a group with its own text chat, to play with others.</p>
+  <p><strong>Why they love it:</strong> instant action, constant rewards, collecting Brawlers, and climbing the trophy ladder. It's also very popular among classmates, who compare Brawlers and ranks.</p>
+
+  <div class="now" id="b-now"><span class="pin">Checked weekly</span>
+    <h2>Right now (November 2026)</h2>
+    <ul>
+      <li><strong>New age rating:</strong> in October 2026, Europe's PEGI age-rating system began moving games with <em>paid random items</em> (loot-box style purchases) from PEGI 3, 7 or 12 up to <strong>PEGI 16</strong>. Brawl Stars was reported among the games affected. Nothing in the game itself changed: the new rating reflects the spending design, not violence.</li>
+      <li><strong>Season 56, "Brawl Vice"</strong>, a crime-city theme, started on 5 November.</li>
+      <li><strong>Three new Brawlers</strong>: Thunder Frogs, Rey and Ruby. New Brawlers create strong pressure to unlock them quickly, and the fastest way is to pay.</li>
+      <li><strong>Ranked mode was overhauled.</strong> It now unlocks at 5,000 trophies, so children may be playing a lot to "get to Ranked".</li>
+      <li><strong>Coming in December:</strong> the "Brawlidays" holiday event with festive skins and limited-time offers.</li>
+    </ul>
+  </div>
+
+  <h2>Words you'll hear</h2>
+  <div class="gloss card">
+    <div><b>Brawler</b>: a playable character</div>
+    <div><b>Gems</b>: the premium currency, bought with real money</div>
+    <div><b>Brawl Pass</b>: a paid monthly reward track</div>
+    <div><b>Starr Drop</b>: a random reward. It feels like a loot box</div>
+    <div><b>Trophies</b>: points that show your rank</div>
+    <div><b>Club</b>: a player group with its own chat</div>
+    <div><b>Hypercharge</b>: a powerful upgrade for a Brawler</div>
+    <div><b>Skin</b>: a cosmetic outfit</div>
+  </div>
+
+  <h2>What's good about it</h2>
+  <ul>
+    <li>No voice chat, and cartoon-level violence.</li>
+    <li>Quick strategic thinking and teamwork.</li>
+    <li>Easy to play together as a family, side by side.</li>
+  </ul>
+
+  <h2 id="b-risks">The real risks</h2>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.4 2"/></svg><span>Time </span><span class="tag high">Most common</span></h3><p>Short matches and constant rewards make it very hard to stop. Device-level time limits work better than willpower.</p></div>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.6 0-2.6.8-2.6 2s1 1.6 2.6 2 2.6.8 2.6 2-1 2-2.6 2c-1.2 0-2.1-.5-2.6-1.3M12 6.5V8M12 16v1.5"/></svg><span>Spending </span><span class="tag high">Common</span></h3><p>Gems, the Brawl Pass, new Brawlers and limited-time offers. Random rewards like Starr Drops build a "maybe this time" feeling. Most spending happens through the phone's app store, so that's where to block it.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4z"/></svg><span>Strangers in Clubs and chat </span><span class="tag med">Possible</span></h3><p>Club chat lets children talk with players they don't know, and friend requests can follow random matches. German child-media experts flag a risk of cyberbullying and grooming here. Supercell does give under-16 accounts extra protection (see below).</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v10.5a4.5 4.5 0 1 1-9 0V12"/><path d="M5 12l-2 2.5M14 3h3"/></svg><span>Toxic behaviour and scams </span><span class="tag med">Common</span></h3><p>Expect trash talk in chat, "free gems" websites and offers to buy or sell accounts. All of these are scams or against the rules, and they can lose your child their account.</p></div>
+
+  <div class="callout green"><strong>Built-in protection for under-16s:</strong> Supercell's "Young Player" accounts don't show personalised offers or ads, use stricter chat filters, and only let children join Clubs labelled <em>Family Friendly</em>. Make sure your child's account has their real age.</div>
+
+  <h2>Reduce the risk: the five things that matter most</h2>
+  <ol>
+    <li><strong>Turn on purchase approval</strong> on the phone or tablet (step-by-step below).</li>
+    <li><strong>Set a daily time limit</strong> for the app at device level.</li>
+    <li><strong>Set up a Supercell ID with a parent email</strong> so you can recover the account.</li>
+    <li><strong>Club with friends only</strong>: ideally a Club your child and their real friends set up.</li>
+    <li><strong>Agree a spending rule</strong> before the holiday event, e.g. "one Brawl Pass a term from pocket money".</li>
+  </ol>
+
+  <h2 id="b-controls">Set up parental controls, step by step</h2>
+  <p>Brawl Stars has few controls of its own, so <strong>the phone or tablet does most of the work.</strong></p>
+  <h3>iPhone / iPad (Screen Time)</h3>
+  <ol class="steps">
+    <li>Settings › <em>Screen Time</em> › set up for your child, or use Family Sharing.</li>
+    <li><em>Content &amp; Privacy Restrictions</em> › <em>iTunes &amp; App Store Purchases</em> › <em>In-app Purchases: Don't Allow</em>. On the newest iOS versions this has moved to Screen Time › <em>Apps and Websites</em> › <em>App Store</em> › <em>In-app Purchases: Blocked</em>. Or turn on <em>Ask to Buy</em> in Family Sharing.</li>
+    <li><em>App Limits</em> › add a daily limit for Games, or for Brawl Stars specifically.</li>
+  </ol>
+  <h3>Android (Google Family Link / Play Store)</h3>
+  <ol class="steps">
+    <li>Install <em>Google Family Link</em> on your phone and link your child's account.</li>
+    <li>In the Play Store on the child's device: Profile › Settings › <em>Purchase verification</em> (called <em>Authentication</em> on some phones), then require verification for every purchase.</li>
+    <li>In Family Link: set daily limits or app-specific time limits.</li>
+  </ol>
+  <h3>In the game</h3>
+  <ol class="steps">
+    <li>Settings › <em>Supercell ID</em> › create one using a <strong>parent-controlled email address</strong>.</li>
+    <li>Make sure the age entered is correct, so your child gets a Young Player account if under 16.</li>
+    <li>Show your child how to <strong>mute, block and report</strong> players, and how to leave a Club.</li>
+  </ol>
+  <p class="checked">Supercell is testing "Supercell ID Family", which lets parents monitor children's accounts. It can't limit time or block the game, so device controls are still needed. Supercell's guide: supercell.com/parents</p>
+
+  <div class="ask" id="b-ask"><h2>Questions to ask your child</h2><ul>
+    <li>"Which Brawler is your favourite, and why?"</li>
+    <li>"Are you in a Club? Who's in it?"</li>
+    <li>"What would you buy if you had gems? What makes it feel worth it?"</li>
+    <li>"How do you know when it's time to stop?"</li>
+  </ul></div>
+
+  <h3>Sources</h3>
+  <ul class="srcs">
+    <li>Supercell: Parents' guide; Younger players support article; Teen and Children's safety guides – supercell.com</li>
+    <li>Supercell release notes, Nov 2026, as reported by GameLeap, TradiGame, Timesaver.gg</li>
+    <li>klicksafe.de and Elternguide.online: Brawl Stars guidance for parents</li>
+    <li>Qustodio: Supercell ID Family; PinkCrow: Brawl Stars explained for parents (age ratings)</li>
+  </ul>
+</section>
+
+<!-- ============================ MINECRAFT ============================ -->
+<section class="page" id="minecraft">
+  <div class="pass pass-hero" style="--gc:var(--c-mine)">
+    <div class="pass-main">
+      <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/><path d="M4 10.2l8 4.4 8-4.4" opacity=".45"/></svg></span><div><h1>Minecraft</h1><p class="pass-line">Digital LEGO with monsters. As safe as the world your child plays in.</p></div></div>
+      <dl class="fields"><div><dt>Made by</dt><dd>Mojang / Microsoft</dd></div><div><dt>Age rating</dt><dd>PEGI 7</dd></div><div><dt>Devices</dt><dd>Almost everything</dd></div><div><dt>Chat</dt><dd>Only when playing online</dd></div><div><dt>Cost</dt><dd>One-off purchase; optional extras</dd></div></dl>
+    </div>
+    <div class="pass-stub">
+      <div class="stub-h">Our rating for primary-age children</div>
+      <div class="meter med"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div>
+      <div class="meter low"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div>
+      <div class="stub-foot">Checked 24 November 2026</div>
+    </div>
+  </div>
+  <div class="pagebar">
+    <nav class="jump" aria-label="On this page"><a href="#m-what">What they do</a><a href="#m-now">Right now</a><a href="#m-risks">Risks</a><a href="#m-controls">Parental controls</a><a href="#m-ask">Talk about it</a></nav>
+    <button class="btn ghost printbtn" onclick="window.print()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3.5h10V9M7 17H4.5V9h15v8H17"/><rect x="7" y="14" width="10" height="6.5"/></svg>Print this guide</button>
+  </div>
+
+  <h2 id="m-what">What your child is actually doing</h2>
+  <p>Minecraft is a world made of blocks that your child can dig, build and explore. The <strong>key question for parents is <em>where</em> they're playing</strong>, because the risk depends almost entirely on that:</p>
+  <table>
+    <tr><th>Where</th><th>What it means</th><th>Risk</th></tr>
+    <tr><td><b>Single player</b></td><td>Alone in their own world</td><td><span class="tag low">Very low</span></td></tr>
+    <tr><td><b>Local / LAN</b></td><td>With people on the same home Wi-Fi</td><td><span class="tag low">Very low</span></td></tr>
+    <tr><td><b>Realms</b></td><td>A private, invite-only world (paid subscription)</td><td><span class="tag low">Low</span></td></tr>
+    <tr><td><b>Featured servers</b></td><td>Big official partner servers with mini-games and many strangers</td><td><span class="tag med">Moderate</span></td></tr>
+    <tr><td><b>Other public servers</b></td><td>Thousands of independent servers, joined by typing an address. Moderation varies hugely</td><td><span class="tag high">Higher</span></td></tr>
+  </table>
+  <p><strong>Two modes:</strong> <em>Creative</em> (unlimited blocks, just build) and <em>Survival</em> (gather resources and survive monsters at night).</p>
+  <p><strong>Two editions:</strong> <em>Bedrock</em> (phones, tablets, consoles, Windows) and <em>Java</em> (PC/Mac, used for most mods and big independent servers). Ask which one your child plays.</p>
+  <p><strong>Why they love it:</strong> total freedom to build anything, adventure, and playing with friends. Many also watch hours of Minecraft videos on YouTube.</p>
+
+  <div class="now" id="m-now"><span class="pin">Checked weekly</span>
+    <h2>Right now (November 2026)</h2>
+    <ul>
+      <li>Minecraft now gets several smaller updates ("drops") a year. The autumn drop, <strong>Wilderness Bound</strong> (September), added a new forest with colourful poplar trees.</li>
+      <li>The winter drop, <strong>Deep Freeze</strong>, is due before the end of 2026. It adds ice caves and a new frozen monster, and children may already be testing it in preview versions.</li>
+      <li><strong>Minecraft Dungeons II</strong>, a separate action-adventure game with no building, came out on 29 September. It may be on Christmas lists.</li>
+      <li>At school, students may use <strong>Minecraft Education</strong>, a separate, closed classroom version.</li>
+    </ul>
+  </div>
+
+  <h2>Words you'll hear</h2>
+  <div class="gloss card">
+    <div><b>Server</b>: an online world run by someone else</div>
+    <div><b>Realm</b>: a private, invite-only world</div>
+    <div><b>Mobs</b>: creatures and monsters</div>
+    <div><b>Minecoins</b>: currency for the Marketplace</div>
+    <div><b>Marketplace</b>: shop for skins, maps and add-ons</div>
+    <div><b>Mods</b>: downloaded changes to the game</div>
+    <div><b>Seed</b>: the code that creates a world</div>
+    <div><b>SMP</b>: "survival multiplayer" server</div>
+  </div>
+
+  <h2>What's good about it</h2>
+  <ul>
+    <li>Creativity, planning, spatial reasoning, and even maths and coding ("redstone" circuits).</li>
+    <li>Can be played completely offline.</li>
+    <li>One of the easiest games for families to play together.</li>
+  </ul>
+
+  <h2 id="m-risks">The real risks</h2>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4z"/></svg><span>Strangers on public servers </span><span class="tag med">Main risk</span></h3><p>Chat on big servers exposes children to bad language, bullying and, rarely, grooming. As in other games, the danger escalates when someone moves the conversation to Discord, where many Minecraft communities have voice chat.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg><span>Unsafe downloads </span><span class="tag med">Common</span></h3><p>Mods, "free Minecoins" and cheats from unofficial websites can carry viruses or steal accounts. Stick to the official Marketplace or well-known, trusted mod sites, ideally with a parent.</p></div>
+  <div class="card risk low"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.6 0-2.6.8-2.6 2s1 1.6 2.6 2 2.6.8 2.6 2-1 2-2.6 2c-1.2 0-2.1-.5-2.6-1.3M12 6.5V8M12 16v1.5"/></svg><span>Spending </span><span class="tag low">Lower</span></h3><p>Marketplace items and Realms subscriptions cost money, and some independent servers sell ranks or perks. The pressure is much lower than in Roblox or Fortnite.</p></div>
+  <div class="card risk low"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.4 2"/></svg><span>Time and YouTube </span><span class="tag low">Manageable</span></h3><p>Building projects absorb hours, and Minecraft YouTube can lead to less suitable channels. Set up YouTube parental controls too.</p></div>
+
+  <h2>Reduce the risk: the five things that matter most</h2>
+  <ol>
+    <li><strong>Create a Microsoft family group</strong> with your child's account in it (this works even if you don't own an Xbox).</li>
+    <li><strong>Decide where they can play</strong>: offline and Realms for younger children; servers only once you've looked at them together.</li>
+    <li><strong>Chat: friends only, or off.</strong></li>
+    <li><strong>Purchases: "ask a parent".</strong></li>
+    <li><strong>No mods or downloads without you.</strong></li>
+  </ol>
+
+  <h2 id="m-controls">Set up parental controls, step by step</h2>
+  <ol class="steps">
+    <li><strong>Create a family group:</strong> go to family.microsoft.com, or install the <em>Xbox Family Settings</em> app, and sign in with your own Microsoft account. Add your child's Microsoft account, the one they use for Minecraft.</li>
+    <li><strong>Multiplayer:</strong> under your child › <em>Privacy &amp; online safety</em> (or <em>Online safety</em> in the app) › <em>You can join multiplayer games</em>: Block, or Allow. Blocking stops servers, Realms and online worlds. Changes can take several hours, sometimes a day, to take effect.</li>
+    <li><strong>Communication:</strong> in the same section, set who can talk to your child with voice, text or invites to <em>Friends</em>, or block it.</li>
+    <li><strong>Friends:</strong> require approval for friend requests if your child is younger.</li>
+    <li><strong>Spending:</strong> turn on <em>Ask a parent</em> for purchases.</li>
+    <li><strong>Screen time:</strong> set daily limits per device in Microsoft Family Safety.</li>
+    <li><strong>Consoles:</strong> PlayStation and Nintendo Switch have their own parental controls too. Set those as well.</li>
+  </ol>
+  <div class="callout blue"><strong>Choosing a server?</strong> Look for clear rules, active moderators and an allow-list (only approved players can join). Better still, pay for a Realm and invite only friends you both know.</div>
+
+  <div class="ask" id="m-ask"><h2>Questions to ask your child</h2><ul>
+    <li>"Show me something you've built. How did you do it?"</li>
+    <li>"Do you play on your own world, a Realm, or a server? Which one?"</li>
+    <li>"Who else is on that server? Do you chat?"</li>
+    <li>"Have you ever downloaded anything for Minecraft? Where from?"</li>
+  </ul></div>
+
+  <h3>Sources</h3>
+  <ul class="srcs">
+    <li>Internet Matters: Minecraft parental controls guide; Hwb (Welsh Government): Minecraft guide for families</li>
+    <li>Microsoft Family Safety / Xbox Family Settings; AllAboutCookies 2026 setup guide</li>
+    <li>Minecraft.net: Drop 4 2026 testing (Nov 2026); Minecraft Wiki: Wilderness Bound, Deep Freeze; Wikipedia: Minecraft Dungeons</li>
+    <li>Qustodio and Bitdefender (Jun 2026): Minecraft safety guides</li>
+  </ul>
+</section>
+
+<!-- ============================ FORTNITE ============================ -->
+<section class="page" id="fortnite">
+  <div class="pass pass-hero" style="--gc:var(--c-fort)">
+    <div class="pass-main">
+      <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5C3 7.4 7 4 12 4s9 3.4 9 7.5"/><path d="M3 11.5c1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0"/><path d="M3 11.5l7.6 7.5M21 11.5l-7.6 7.5M12 11.5V19"/><rect x="10.3" y="18.5" width="3.4" height="3" rx=".8"/></svg></span><div><h1>Fortnite</h1><p class="pass-line">Much more than one shooting game: it's now a platform of many games.</p></div></div>
+      <dl class="fields"><div><dt>Made by</dt><dd>Epic Games</dd></div><div><dt>Age rating</dt><dd>PEGI 12</dd></div><div><dt>Devices</dt><dd>Consoles, PC, Switch, mobile</dd></div><div><dt>Chat</dt><dd>Voice and text, if a parent allows it</dd></div><div><dt>Cost</dt><dd>Free; spending via V-Bucks</dd></div></dl>
+    </div>
+    <div class="pass-stub">
+      <div class="stub-h">Our rating for primary-age children</div>
+      <div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div>
+      <div class="meter med"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div>
+      <div class="stub-foot">Checked 24 November 2026</div>
+    </div>
+  </div>
+  <div class="pagebar">
+    <nav class="jump" aria-label="On this page"><a href="#f-what">What they do</a><a href="#f-now">Right now</a><a href="#f-risks">Risks</a><a href="#f-controls">Parental controls</a><a href="#f-ask">Talk about it</a></nav>
+    <button class="btn ghost printbtn" onclick="window.print()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3.5h10V9M7 17H4.5V9h15v8H17"/><rect x="7" y="14" width="10" height="6.5"/></svg>Print this guide</button>
+  </div>
+
+  <h2 id="f-what">What your child is actually doing</h2>
+  <p>Most children mean <strong>Battle Royale</strong>: up to 100 players drop onto an island, collect weapons and materials, and fight until one player or team is left. The violence is cartoonish, with no blood: defeated players simply vanish. Players can also <em>build</em> walls and ramps in seconds, a big part of the skill. <em>Zero Build</em> is the version without building.</p>
+  <p>But Fortnite now contains much more:</p>
+  <ul>
+    <li><strong>LEGO Fortnite</strong>: survival and building, similar to Minecraft. Gentler, and popular with younger children.</li>
+    <li><strong>Fortnite Festival</strong>: a music and rhythm game.</li>
+    <li><strong>Creative islands</strong>: thousands of games made by players, from obstacle courses to horror. Each island has its own age rating, which works much like Roblox.</li>
+  </ul>
+  <p><strong>A typical session:</strong> queue with friends (or random teammates), play a 20-minute match, complete daily challenges for Battle Pass rewards, check the Item Shop for new skins, and repeat.</p>
+  <p><strong>Why they love it:</strong> playing with friends, the thrill of winning, skins, dances ("emotes") and big live events everyone talks about at school.</p>
+
+  <div class="now" id="f-now"><span class="pin">Checked weekly</span>
+    <h2>Right now (November 2026)</h2>
+    <ul>
+      <li>Fortnite is in a short "mini-season", <strong>Treasure Hunters</strong>, which started on 1 November.</li>
+      <li>On <strong>5 December</strong>, Epic has confirmed a <strong>live ending event</strong> for the current chapter and a <strong>new Battle Pass</strong>. A new map ("Chapter 8") is widely expected to follow. Expect children to be desperate to be online for the event, and to ask for the new Battle Pass.</li>
+      <li><strong>Winterfest</strong>, the Christmas event with free gifts and seasonal skins, usually follows in mid-December.</li>
+      <li>Epic's parental controls include separate <strong>Play Time and Create Time limits</strong>, so you can limit playing and island-building separately.</li>
+    </ul>
+  </div>
+
+  <h2>Words you'll hear</h2>
+  <div class="gloss card">
+    <div><b>V-Bucks</b>: the currency, bought with real money</div>
+    <div><b>Battle Pass</b>: a paid seasonal reward track</div>
+    <div><b>Item Shop</b>: skins that rotate daily ("it leaves tonight!")</div>
+    <div><b>Skin / Emote</b>: an outfit / a dance</div>
+    <div><b>Squad / Duos</b>: teams of four / two</div>
+    <div><b>Fill</b>: being matched with random teammates (strangers)</div>
+    <div><b>Island / Map code</b>: a player-made game</div>
+    <div><b>Crew</b>: a monthly subscription</div>
+  </div>
+
+  <h2>What's good about it</h2>
+  <ul>
+    <li>Teamwork, quick decision-making and communication with friends.</li>
+    <li>LEGO Fortnite and Creative mode reward building and design.</li>
+    <li>Epic has some of the most detailed parental controls of any game.</li>
+  </ul>
+
+  <h2 id="f-risks">The real risks</h2>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4z"/></svg><span>Voice chat with strangers </span><span class="tag high">Main risk</span></h3><p>When your child plays with random teammates ("fill"), open voice chat can mean strangers' bad language, bullying or worse. Voice chat is off by default for under-18s, and younger children can't use it without parental consent. Check it hasn't been switched on. Console voice chat (PlayStation, Xbox) is separate and needs its own settings.</p></div>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.6 0-2.6.8-2.6 2s1 1.6 2.6 2 2.6.8 2.6 2-1 2-2.6 2c-1.2 0-2.1-.5-2.6-1.3M12 6.5V8M12 16v1.5"/></svg><span>Spending and "fear of missing out" </span><span class="tag high">Very common</span></h3><p>The Item Shop changes every day, and skins are status symbols at school. In 2022, Epic paid <strong>$520 million</strong> in US settlements over children's privacy and design tricks that led to unwanted purchases. Its systems are better now, but the pressure to buy remains.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Player-made islands </span><span class="tag med">Varies</span></h3><p>Creative islands range from gentle to frightening. Use the content rating setting to control which islands your child can open.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v10.5a4.5 4.5 0 1 1-9 0V12"/><path d="M5 12l-2 2.5M14 3h3"/></svg><span>Scams </span><span class="tag med">Common</span></h3><p>"Free V-Bucks" websites and videos are always scams. They aim to steal accounts or personal details.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.4 2"/></svg><span>Time and sleep </span><span class="tag med">Common</span></h3><p>Matches can't be paused, and live events sometimes happen late in the evening in Swedish time.</p></div>
+
+  <div class="callout green"><strong>Automatic protection for younger children:</strong> if your child is under 13, Epic creates a <strong>Cabined Account</strong>. Voice chat, free text chat and real-money purchases are off until a parent gives consent and sets up controls. If your child says "it needs parent permission", that's this, and it's a good moment to set things up properly.</div>
+
+  <h2>Reduce the risk: the five things that matter most</h2>
+  <ol>
+    <li><strong>Set up Epic parental controls with a 6-digit PIN</strong> that only you know.</li>
+    <li><strong>Voice chat: friends only, or nobody.</strong> Check the console settings too.</li>
+    <li><strong>Purchases need the PIN</strong>, and paid random items are off.</li>
+    <li><strong>Island content rating</strong> set to match your child's age.</li>
+    <li><strong>Play Time limits</strong>, plus agreed exceptions for big events.</li>
+  </ol>
+
+  <h2 id="f-controls">Set up parental controls, step by step</h2>
+  <ol class="steps">
+    <li><strong>Sign in to your child's Epic account</strong> on the Epic Games website (easiest on a computer), or open Fortnite › menu › <em>Settings</em> (gear) › <em>Parental Controls</em>.</li>
+    <li><strong>Confirm a parent email</strong> and create a <strong>6-digit PIN</strong>. The PIN locks every setting.</li>
+    <li><strong>Voice Chat Permission:</strong> Nobody or Friends Only is best for most children. For under-10s, Friends Only is the most open option Epic allows; for under-13s it's Friends, team members and connections. Avoid "Everybody".</li>
+    <li><strong>Text Chat Permission:</strong> same choices. Turn on <em>Filter Mature Language</em>.</li>
+    <li><strong>Require a PIN to add friends.</strong></li>
+    <li><strong>Content ratings:</strong> set the highest island rating your child can open without your PIN.</li>
+    <li><strong>Purchases:</strong> require the PIN for real-money purchases, and switch off <em>Allow Paid Random Items</em>.</li>
+    <li><strong>Time limits:</strong> set daily Play Time (and Create Time) limits, and turn on weekly playtime reports by email.</li>
+    <li><strong>Console:</strong> set chat and spending limits in the PlayStation, Xbox or Nintendo parental controls too.</li>
+  </ol>
+  <p class="checked">Epic's guide: safety.epicgames.com/parental-controls. These controls also cover Rocket League and Fall Guys.</p>
+
+  <div class="ask" id="f-ask"><h2>Questions to ask your child</h2><ul>
+    <li>"Which mode do you play most: Battle Royale, LEGO, or islands?"</li>
+    <li>"Do you play with friends or random people? Do you talk to them?"</li>
+    <li>"What's in the Item Shop that everyone wants right now?"</li>
+    <li>"The December event: shall we plan how you'll watch it?"</li>
+  </ul></div>
+
+  <h3>Sources</h3>
+  <ul class="srcs">
+    <li>Epic Games: Safety &amp; Security Center, Parental Controls, Cabined Accounts – safety.epicgames.com</li>
+    <li>US Federal Trade Commission: Epic Games settlements, Dec 2022 / Mar 2023</li>
+    <li>FRVR (Oct 2026): Fortnite parental controls, incl. Play Time/Create Time limits</li>
+    <li>theclick.gg / Insider Gaming (Nov 2026): 5 December event and Battle Pass</li>
+    <li>Internet Matters; Hwb (Welsh Government): Fortnite guides; Norton (2026)</li>
+  </ul>
+</section>
+
+<!-- ============================ FIND OUT ============================ -->
+<section class="page" id="findout">
+  <h1>Find out what your child is playing</h1>
+  <p class="lede">Many parents don't know exactly which games their child plays, or which games inside a game. That's normal. Here's how to find out without turning it into an interrogation.</p>
+
+  <h2>1. Ask them to teach you</h2>
+  <p>Children love being the expert. "Can you show me your favourite game and teach me how to play?" tells you more in ten minutes than any setting. Watch for: who they play with, whether there's chat, and what the game asks them to buy.</p>
+  <div class="card">
+    <h3>Good conversation starters</h3>
+    <ul>
+      <li>"What are people in your class playing at the moment?"</li>
+      <li>"What's the best thing that happened in a game this week?"</li>
+      <li>"Is there anyone in your games who isn't from school?"</li>
+      <li>"Has anything ever happened in a game that you didn't like?"</li>
+      <li>"If you could buy one thing in a game, what would it be?"</li>
+    </ul>
+    <p class="checked">Tip: car journeys and side-by-side activities work better than face-to-face questioning.</p>
+  </div>
+
+  <h2>2. Check the devices</h2>
+  <table>
+    <tr><th>Device</th><th>Where to look</th></tr>
+    <tr><td><b>iPhone / iPad</b></td><td>Settings › Screen Time › <em>See All App &amp; Website Activity</em> shows which apps are used and for how long</td></tr>
+    <tr><td><b>Android</b></td><td>Google Family Link app on your phone › your child › app activity</td></tr>
+    <tr><td><b>Xbox / Minecraft</b></td><td>Xbox Family Settings app › activity reports</td></tr>
+    <tr><td><b>Nintendo Switch</b></td><td>Nintendo Switch Parental Controls app › daily summary</td></tr>
+    <tr><td><b>PlayStation</b></td><td>Family Management in your PlayStation account › play time</td></tr>
+    <tr><td><b>Roblox</b></td><td>Linked parent account › your child's most-played games and screen time</td></tr>
+    <tr><td><b>Fortnite</b></td><td>Epic parental controls › weekly playtime report by email</td></tr>
+  </table>
+
+  <h2>3. Know the "hidden" apps</h2>
+  <p>The biggest risks often aren't in the game but in the apps used <em>alongside</em> it. If you see any of these, ask about them:</p>
+  <ul>
+    <li><strong>Discord</strong>: voice and text chat servers used by gamers (13+). Many game communities live here.</li>
+    <li><strong>Snapchat, WhatsApp, Telegram</strong>: where strangers try to move conversations.</li>
+    <li><strong>YouTube and TikTok</strong>: game videos, which can lead to adult content and "free currency" scams.</li>
+  </ul>
+
+  <h2>4. Look out for these signs</h2>
+  <div class="two">
+    <div class="card"><h3>Worth a gentle chat</h3><ul><li>A new online "friend" who gives gifts or currency</li><li>Secrecy, or switching screens quickly</li><li>Playing late at night</li><li>Unexplained purchases or in-game items</li><li>Upset or withdrawn after playing</li></ul></div>
+    <div class="card"><h3>Act now</h3><ul><li>Requests for photos or to keep secrets</li><li>Pressure to move to another app</li><li>Threats, or demands for money or images</li><li>An adult your child won't talk about</li></ul><p><a href="#help">What to do, and who to contact</a></p></div>
+  </div>
+</section>
+
+<!-- ============================ WORDS ============================ -->
+<section class="page" id="words">
+  <h1>Words kids use</h1>
+  <p class="lede">Gaming slang you'll hear at the dinner table, and what it means.</p>
+  <table>
+    <tr><th>Word</th><th>Meaning</th></tr>
+    <tr><td><b>AFK</b></td><td>"Away from keyboard": not playing for a moment</td></tr>
+    <tr><td><b>Noob</b></td><td>A beginner, often used as a mild insult</td></tr>
+    <tr><td><b>GG</b></td><td>"Good game": polite at the end of a match</td></tr>
+    <tr><td><b>Grinding</b></td><td>Repeating tasks for a long time to earn rewards</td></tr>
+    <tr><td><b>Skin</b></td><td>A cosmetic outfit for a character</td></tr>
+    <tr><td><b>Battle Pass / Brawl Pass</b></td><td>A paid reward track that lasts a season</td></tr>
+    <tr><td><b>Loot box / Starr Drop / Mystery box</b></td><td>A random reward. Can feel like gambling</td></tr>
+    <tr><td><b>Robux / V-Bucks / Gems / Minecoins</b></td><td>In-game currencies bought with real money</td></tr>
+    <tr><td><b>Trading / Trust trade</b></td><td>Swapping items with others. "Trust trades" are usually scams</td></tr>
+    <tr><td><b>Server</b></td><td>An online world or match run by a game company or by other players</td></tr>
+    <tr><td><b>Lobby</b></td><td>The waiting area before a match</td></tr>
+    <tr><td><b>Fill / Randoms</b></td><td>Being teamed up with strangers</td></tr>
+    <tr><td><b>Toxic</b></td><td>Rude, aggressive behaviour from other players</td></tr>
+    <tr><td><b>Brainrot</b></td><td>Absurd internet meme content (and characters), very popular with children in 2025–26</td></tr>
+    <tr><td><b>Ranked</b></td><td>Competitive mode where you climb or drop in rank</td></tr>
+    <tr><td><b>Gifting</b></td><td>Buying items for someone else. Be wary of strangers who offer it</td></tr>
+  </table>
+</section>
+
+<!-- ============================ HELP ============================ -->
+<section class="page" id="help">
+  <h1>Get help</h1>
+  <div class="callout red"><strong>A child is in immediate danger?</strong> Call <strong>112</strong>.</div>
+
+  <h2>What to do first</h2>
+  <ol class="steps">
+    <li><strong>Stay calm</strong> and thank your child for telling you. How you react decides whether they tell you next time.</li>
+    <li><strong>Don't delete anything.</strong> Screenshot usernames, messages and dates.</li>
+    <li><strong>Report and block</strong> the user in the game.</li>
+    <li><strong>Contact the police</strong> if there is any sexual content, request for images, threat or demand for money.</li>
+    <li><strong>Tell the school</strong> so staff can support your child.</li>
+  </ol>
+
+  <h2>Who to contact in Sweden</h2>
+  <table>
+    <tr><th>Situation</th><th>Contact</th></tr>
+    <tr><td>Emergency</td><td><strong>112</strong></td></tr>
+    <tr><td>Grooming, sexual messages or images, threats, sextortion</td><td>Polisen: <strong>114 14</strong> · polisen.se</td></tr>
+    <tr><td>A child needs someone to talk to</td><td>BRIS: <strong>116 111</strong> (phone, text, chat and email, open 24 hours)</td></tr>
+    <tr><td>You're an adult worried about a child</td><td>BRIS adult line: <strong>0771-50 50 50</strong> (Swedish, English and Arabic)</td></tr>
+    <tr><td>Reporting child sexual abuse material online</td><td>ECPAT Sverige hotline · ecpat.se</td></tr>
+    <tr><td>Advice on children and media</td><td>Mediemyndigheten · mediemyndigheten.se</td></tr>
+    <tr><td>At school</td><td>Your child's teacher or the school's safeguarding or student-welfare lead</td></tr>
+  </table>
+
+  <h2>Reporting inside the games</h2>
+  <ul>
+    <li><strong>Roblox:</strong> the report button on a player's profile or in the game menu; Roblox Safety Center</li>
+    <li><strong>Brawl Stars:</strong> the player's profile › report; Settings › Help and Support</li>
+    <li><strong>Minecraft:</strong> report in-game (Bedrock) or to the server's moderators; Xbox reporting</li>
+    <li><strong>Fortnite:</strong> menu › Report Player (includes voice reports); safety.epicgames.com</li>
+  </ul>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="page" id="about">
+  <h1>About Parent Pass</h1>
+  <p>This guide was put together by a primary educator in Stockholm, for parents and carers who want to understand the games their children play. It covers the games children talk about most.</p>
+  <h2>How it's kept up to date</h2>
+  <ul>
+    <li>Each game's settings, news and popular trends are <strong>checked monthly</strong>.</li>
+    <li>Every page shows the date it was last checked.</li>
+    <li>Big changes, such as a new safety feature or a major regulator decision, are updated as soon as possible.</li>
+  </ul>
+  <h2>Please note</h2>
+  <ul>
+    <li>This guide is for general information, not legal or professional advice.</li>
+    <li>Settings and menu names change and vary by country and device. If something differs, follow what you see in the app.</li>
+    <li>"Our rating" is a practical judgement for primary-age children, based on regulator findings, research and how each game works, not an official rating.</li>
+    <li>Lawsuits and investigations mentioned are allegations unless a court or regulator has ruled.</li>
+  </ul>
+  <h2>Suggestions</h2>
+  <p>Is your child playing something that isn't here? Get in touch and we'll consider adding it.</p>
+</section>
+
+</main>
+
+<footer><span class="flogo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h15A1.5 1.5 0 0 1 21 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5V14a2 2 0 0 0 0-4z"/><path d="M15 6.5v11" stroke-dasharray="1.6 2"/></svg>Parent Pass</span><span>Your pass into the games your kids play. Last checked 24 November 2026.</span><a href="#about">About and disclaimer</a></footer>
+
+<script>
+(function(){
+  var pages = Array.prototype.slice.call(document.querySelectorAll('section.page'));
+  var ids = pages.map(function(p){return p.id;});
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  function route(){
+    var h = (location.hash || '#home').slice(1);
+    var pageId = h, anchor = null;
+    if (ids.indexOf(h) === -1){
+      var el = document.getElementById(h);
+      var parent = el ? el.closest('section.page') : null;
+      if (parent){ pageId = parent.id; anchor = el; } else { pageId = 'home'; }
+    }
+    pages.forEach(function(p){ p.classList.toggle('on', p.id === pageId); });
+    navLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#'+pageId); });
+    setTimeout(function(){
+      if (anchor){ anchor.scrollIntoView({block:'start'}); }
+      else { window.scrollTo(0,0); }
+    }, 30);
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('load', route);
+  var framed=false; try{ framed = window.self !== window.top; }catch(e){ framed = true; }
+  if (framed){ Array.prototype.forEach.call(document.querySelectorAll('.printbtn'), function(x){ x.style.display='none'; }); }
+  route();
+
+  var q = document.getElementById('q'), hint = document.getElementById('qhint');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#cards .pass-card'));
+  q.addEventListener('input', function(){
+    var v = q.value.trim().toLowerCase(), shown = 0;
+    cards.forEach(function(c){
+      var text = (c.getAttribute('data-k') + ' ' + c.textContent).toLowerCase();
+      var ok = !v || text.indexOf(v) !== -1;
+      c.classList.toggle('hide', !ok); if (ok) shown++;
+    });
+    hint.textContent = v && !shown ? 'Not covered yet. Let us know which game you would like added.' : '';
+  });
+})();
+</script>
+</body>
+</html>
