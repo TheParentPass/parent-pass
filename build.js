@@ -14,7 +14,7 @@ const path = require('path');
 
 const SITE = 'https://parent-pass.netlify.app';
 // Visitor counts (GoatCounter, no cookies). Put the site code here, e.g. 'parentpass', to switch on.
-const GOATCOUNTER = '';
+const GOATCOUNTER = 'parentpass';
 
 const SLUGS = {
   home: '', roblox: 'roblox', brawl: 'brawl-stars', minecraft: 'minecraft', fortnite: 'fortnite',
