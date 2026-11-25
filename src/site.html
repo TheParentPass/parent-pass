@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <title>Parent Pass – A parents' guide to Roblox, Fortnite, Minecraft and Brawl Stars</title>
 <meta name="description" content="Free, plain-English guides for parents: what children really do in Roblox, Fortnite, Minecraft and Brawl Stars, the real risks, and step-by-step parental controls. Checked every week.">
 <link rel="canonical" href="https://parent-pass.netlify.app/">
@@ -13,11 +11,15 @@
 <meta property="og:description" content="Free, plain-English guides for parents to Roblox, Fortnite, Minecraft and Brawl Stars: risks, parental controls and what's popular right now.">
 <meta property="og:url" content="https://parent-pass.netlify.app/">
 <style>
+@font-face{font-family:"Atkinson Hyperlegible";src:url(/fonts/atkinson-400.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";src:url(/fonts/atkinson-700.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";src:url(/fonts/atkinson-400i.woff) format("woff");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url(/fonts/bricolage-var.woff) format("woff");font-weight:500 800;font-style:normal;font-display:swap}
 :root{
   --ink:#17203a; --ink-2:#4a5571; --line:#d9dfea; --fog:#eef1f7; --paper:#ffffff;
   --cobalt:#2340b0; --cobalt-soft:#e4e9fb; --ticket:#ffd447; --ticket-soft:#fff6d6;
   --red:#c8372c; --red-soft:#fbe7e5; --amber:#c07a00; --amber-soft:#fff1d4; --green:#23824f; --green-soft:#e2f3e9;
-  --c-roblox:#3b4a6b; --c-brawl:#d98a00; --c-mine:#3f8a3a; --c-fort:#6a46d6;
+  --c-roblox:#3b4a6b; --c-brawl:#d98a00; --c-mine:#3f8a3a; --c-fort:#6a46d6; --c-yt:#c4302b;
   --display:"Bricolage Grotesque","Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
   --body:"Atkinson Hyperlegible",Verdana,"Segoe UI",system-ui,sans-serif;
   --stub:178px;
@@ -169,6 +171,16 @@ strong,b{font-weight:700}
 .rule h3{margin:14px 0 6px}
 .rule p{font-size:16px;color:var(--ink-2);margin:0}
 
+/* feedback form */
+.form{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;max-width:640px}
+.form label{display:block;font-weight:700;margin:14px 0 6px}
+.form label:first-child{margin-top:0}
+.form .hint2{display:block;font-weight:400;font-size:15px;color:var(--ink-2)}
+.form select,.form textarea,.form input[type=email],.form input[type=text]{width:100%;font:17px var(--body);color:var(--ink);padding:11px 13px;border:2px solid var(--line);border-radius:10px;background:#fff}
+.form textarea{min-height:150px;resize:vertical}
+.form select:focus,.form textarea:focus,.form input:focus{outline:none;border-color:var(--cobalt)}
+.btn.solid{background:var(--cobalt);color:#fff;border:0;padding:12px 20px;font-size:17px;margin-top:18px}
+
 /* tables */
 table{width:100%;border-collapse:collapse;background:var(--paper);font-size:16px;margin:12px 0 22px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 th,td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
@@ -248,6 +260,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <a href="#brawl">Brawl Stars</a>
     <a href="#minecraft">Minecraft</a>
     <a href="#fortnite">Fortnite</a>
+    <a href="#youtube">YouTube</a>
     <a href="#notyet">Not yet</a>
     <a href="#ahead">Get ahead</a>
     <a href="#findout">Find out what they play</a>
@@ -259,7 +272,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 <main>
 
 <!-- ============================ HOME ============================ -->
-<section class="page" id="home">
+<section class="page" id="home" data-title="Parent Pass – A parents' guide to Roblox, Fortnite, Minecraft, Brawl Stars and YouTube" data-desc="Free, plain-English guides for parents: what children really do in Roblox, Fortnite, Minecraft, Brawl Stars and YouTube, the real risks, and step-by-step parental controls. Checked every week.">
   <div class="hero">
     <div class="hero-copy">
       <h1>Your pass into the games your kids play</h1>
@@ -289,6 +302,10 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 <a class="pass pass-card" href="#fortnite" data-k="fortnite epic v-bucks battle pass lego festival creative island chapter 8 cabined" style="--gc:var(--c-fort)">
       <div class="pass-main"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5C3 7.4 7 4 12 4s9 3.4 9 7.5"/><path d="M3 11.5c1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0"/><path d="M3 11.5l7.6 7.5M21 11.5l-7.6 7.5M12 11.5V19"/><rect x="10.3" y="18.5" width="3.4" height="3" rx=".8"/></svg></span><h3>Fortnite</h3><p>100-player battles, plus LEGO, music and player-made islands.</p><span class="open">Open the Fortnite guide</span></div>
       <div class="pass-stub"><div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div><div class="meter med"><span class="mlabel">With controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div></div>
+    </a>
+<a class="pass pass-card" href="#youtube" data-k="youtube youtube kids shorts youtuber creator supervised family link family center" style="--gc:var(--c-yt)">
+      <div class="pass-main"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></span><h3>YouTube</h3><p>Where children watch other people play, and find out about every game.</p><span class="open">Open the guide</span></div>
+      <div class="pass-stub"><div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div><div class="meter low"><span class="mlabel">With controls</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div></div>
     </a>
   </div>
 
@@ -329,7 +346,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ ROBLOX ============================ -->
-<section class="page" id="roblox">
+<section class="page" id="roblox" data-title="Roblox parents' guide: risks and parental controls step by step" data-desc="What children really do on Roblox, what's popular right now, the real risks, and how to set up Roblox parental controls step by step.">
   <div class="pass pass-hero" style="--gc:var(--c-roblox)">
     <div class="pass-main">
       <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="15.5" cy="11.3" r="1.1" fill="currentColor"/><circle cx="18" cy="13.8" r="1.1" fill="currentColor"/></svg></span><div><h1>Roblox</h1><p class="pass-line">Not one game but millions of them, all made by other players.</p></div></div>
@@ -436,7 +453,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ BRAWL STARS ============================ -->
-<section class="page" id="brawl">
+<section class="page" id="brawl" data-title="Brawl Stars parents' guide: risks, spending and parental controls" data-desc="What Brawl Stars is, why it's now PEGI 16, the spending pressure, and how to set up controls on your child's phone or tablet.">
   <div class="pass pass-hero" style="--gc:var(--c-brawl)">
     <div class="pass-main">
       <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l2.6 5.6 6.1.7-4.5 4.2 1.2 6.1L12 16.4l-5.4 3 1.2-6.1-4.5-4.2 6.1-.7z"/></svg></span><div><h1>Brawl Stars</h1><p class="pass-line">Quick, colourful team battles, designed for "just one more game".</p></div></div>
@@ -545,7 +562,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ MINECRAFT ============================ -->
-<section class="page" id="minecraft">
+<section class="page" id="minecraft" data-title="Minecraft parents' guide: servers, chat and parental controls" data-desc="What children do in Minecraft, the risks of multiplayer servers and chat, and how to set up Microsoft Family and Xbox controls.">
   <div class="pass pass-hero" style="--gc:var(--c-mine)">
     <div class="pass-main">
       <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/><path d="M4 10.2l8 4.4 8-4.4" opacity=".45"/></svg></span><div><h1>Minecraft</h1><p class="pass-line">Digital LEGO with monsters. As safe as the world your child plays in.</p></div></div>
@@ -650,7 +667,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ FORTNITE ============================ -->
-<section class="page" id="fortnite">
+<section class="page" id="fortnite" data-title="Fortnite parents' guide: voice chat, V-Bucks and parental controls" data-desc="What Fortnite is now, the real risks (voice chat, spending, player-made islands) and how to set up Epic parental controls step by step.">
   <div class="pass pass-hero" style="--gc:var(--c-fort)">
     <div class="pass-main">
       <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5C3 7.4 7 4 12 4s9 3.4 9 7.5"/><path d="M3 11.5c1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0 1.5-1 3-1 4.5 0"/><path d="M3 11.5l7.6 7.5M21 11.5l-7.6 7.5M12 11.5V19"/><rect x="10.3" y="18.5" width="3.4" height="3" rx=".8"/></svg></span><div><h1>Fortnite</h1><p class="pass-line">Much more than one shooting game: it's now a platform of many games.</p></div></div>
@@ -757,8 +774,85 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   </ul>
 </section>
 
+<!-- ============================ YOUTUBE ============================ -->
+<section class="page" id="youtube" data-title="YouTube parents' guide: YouTube Kids, supervised accounts and Shorts limits" data-desc="Which YouTube is right for your child, the real risks (Shorts, comments, rabbit holes) and how to set up YouTube Kids, supervised accounts and the Shorts timer.">
+  <div class="pass pass-hero" style="--gc:var(--c-yt)">
+    <div class="pass-main">
+      <div class="pass-title"><span class="glyph"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></span><div><h1>YouTube</h1><p class="pass-line">Where most children start: not a game, but where they learn about every game.</p></div></div>
+      <dl class="fields"><div><dt>Made by</dt><dd>Google</dd></div><div><dt>Age for own account</dt><dd>13+; under 13 only with a parent-supervised account</dd></div><div><dt>Devices</dt><dd>Phones, tablets, computers, TVs, consoles</dd></div><div><dt>Contact with others</dt><dd>Comments and live chat (not in YouTube Kids)</dd></div><div><dt>Cost</dt><dd>Free with ads; paid Premium</dd></div></dl>
+    </div>
+    <div class="pass-stub">
+      <div class="stub-h">Our rating for primary-age children</div>
+      <div class="meter high"><span class="mlabel">Without controls</span><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>High</b></div>
+      <div class="meter low"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div>
+      <div class="stub-foot">Checked 25 November 2026</div>
+    </div>
+  </div>
+  <div class="pagebar">
+    <nav class="jump" aria-label="On this page"><a href="#y-which">Which YouTube?</a><a href="#y-risks">Risks</a><a href="#y-controls">Parental controls</a><a href="#y-ask">Talk about it</a></nav>
+    <button class="btn ghost printbtn" onclick="window.print()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3.5h10V9M7 17H4.5V9h15v8H17"/><rect x="7" y="14" width="10" height="6.5"/></svg>Print this guide</button>
+  </div>
+
+  <h2>What your child is actually doing</h2>
+  <p>For most primary-age children, YouTube is the main way they find out about games. They watch other people play Roblox, Minecraft and Fortnite, learn tricks, follow favourite creators, and pick up which games and characters are "in". It's also where they first meet horror characters and older games they're not ready to play (see <a href="#notyet">Not yet</a>).</p>
+  <p><strong>Shorts</strong> are the quick, swipe-up videos, YouTube's version of TikTok. They're the easiest part of YouTube to lose an hour in.</p>
+
+  <h2 id="y-which">Which YouTube is right for your child?</h2>
+  <p>YouTube offers three different experiences, each with different protections. The most important thing is that your child is <strong>signed in to the right one on every device</strong>, including the TV.</p>
+  <table>
+    <tr><th>Option</th><th>Who it's for</th><th>What's different</th></tr>
+    <tr><td><b>YouTube Kids</b><br>(separate app, or a profile on the TV)</td><td>Up to 12, best for under-9s</td><td>A smaller, family-friendly library. No public comments or messaging. You choose an age level (4 and under, 5–8, or 9–12), or approve every video yourself.</td></tr>
+    <tr><td><b>Supervised account</b><br>(regular YouTube, managed by you)</td><td>Under 13, when you decide they're ready</td><td>Looks like normal YouTube. You choose one of three content levels: <em>Explore</em> (roughly 9+), <em>Explore More</em> (roughly 13+) or <em>Most of YouTube</em>. Some features, like comments, are restricted.</td></tr>
+    <tr><td><b>Teen account</b></td><td>13–17</td><td>All of YouTube except age-restricted videos, with some built-in protections. Parents can link it for supervision.</td></tr>
+  </table>
+  <div class="callout amber"><strong>The biggest gap: watching while signed out.</strong> None of these protections apply if your child watches YouTube signed out, on a shared tablet, on the family TV or on a grandparent's phone. A signed-out child sees ordinary YouTube.</div>
+
+  <h2 id="y-risks">The real risks</h2>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v16H8z"/><path d="M12 8v5M10 11l2 2 2-2"/></svg><span>Endless Shorts scrolling </span><span class="tag high">Very common</span></h3><p>Shorts are built to keep you swiping. Many families find this is the hardest part of YouTube to manage. You can now limit the Shorts feed or turn it off on a supervised account (see the steps below).</p></div>
+  <div class="card risk high"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Rabbit holes and frightening content </span><span class="tag high">Common</span></h3><p>Autoplay and recommendations lead from one video to the next. A harmless Minecraft video can end with horror game clips, "challenges" children copy, or content made for older viewers. YouTube says its filters make mistakes, so no setting is perfect.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4z"/></svg><span>Comments and live chat </span><span class="tag med">Main contact risk</span></h3><p>On regular YouTube, comments and live-stream chats let strangers interact with children, and some adults use them to start contact. YouTube Kids has no public comments, and supervised accounts restrict them.</p></div>
+  <div class="card risk med"><h3><svg class="ic risk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v10.5a4.5 4.5 0 1 1-9 0V12"/><path d="M5 12l-2 2.5M14 3h3"/></svg><span>"Free Robux / V-Bucks" scams and adverts </span><span class="tag med">Common</span></h3><p>Videos promising free game currency are always scams. Creators also promote products and games, which children may not recognise as advertising.</p></div>
+
+  <h2>Reduce the risk: the five things that matter most</h2>
+  <ol>
+    <li><strong>Choose the right YouTube</strong> for your child's age: YouTube Kids for younger children, a supervised account for older ones.</li>
+    <li><strong>Sign your child in on every device they use,</strong> including the TV and games console.</li>
+    <li><strong>Limit or turn off Shorts</strong> on a supervised account.</li>
+    <li><strong>Turn off autoplay</strong>, so one video doesn't roll into the next.</li>
+    <li><strong>Watch together sometimes</strong> and ask who their favourite creators are.</li>
+  </ol>
+
+  <h2 id="y-controls">Set up parental controls, step by step</h2>
+  <ol class="steps">
+    <li><strong>Create a Google Account for your child</strong> through Google Family Link (free app), if they don't have one. This links their account to yours.</li>
+    <li><strong>Choose the experience:</strong> during set-up, pick <em>YouTube Kids</em> or a <em>supervised experience</em> on YouTube, and choose the content level.</li>
+    <li><strong>Find the settings later</strong> in the YouTube app on your phone: <em>You</em> › <em>Settings</em> › <em>Family Center</em>. Or in Family Link: your child › <em>Controls</em> › <em>Content restrictions</em> › YouTube.</li>
+    <li><strong>Shorts:</strong> in Family Center, choose your child's account and open the time management settings. Set a daily Shorts limit, or set it to zero to turn the Shorts feed off.</li>
+    <li><strong>Block channels or videos</strong> you don't want your child to see, and check their watch history from time to time.</li>
+    <li><strong>TVs and consoles:</strong> open YouTube, go to "Who's watching?" and choose your child's profile. Remove or protect your own profile so they can't switch to it.</li>
+    <li><strong>Shared devices:</strong> on any device where your child might watch signed out, turn on <em>Restricted Mode</em> in YouTube's settings. It hides comments and live chats and filters out some mature videos, but it's not as strong as a supervised account.</li>
+  </ol>
+  <p class="checked">YouTube's guide: youtube.com/myfamily. Google's help page: "Parental controls &amp; settings for supervised kid accounts on YouTube".</p>
+
+  <div class="ask" id="y-ask"><h2>Questions to ask your child</h2><ul>
+    <li>"Who's your favourite YouTuber? Can you show me a video?"</li>
+    <li>"Have you ever seen a video that scared you or felt weird?"</li>
+    <li>"How do you feel after a long time watching Shorts?"</li>
+    <li>"Have you ever seen a video offering free Robux or V-Bucks?"</li>
+  </ul></div>
+
+  <h3>Sources</h3>
+  <ul class="srcs">
+    <li>YouTube: youtube.com/myfamily; "A decade of building for teens and families", YouTube blog, Jan 2026</li>
+    <li>Google YouTube Help: supervised experiences for pre-teens; parental controls for supervised kid accounts; understand your choices as a family</li>
+    <li>YouTube blog: "Helping families across Europe build healthy digital habits" (Shorts feed limit in Europe, 2026)</li>
+    <li>Internet Matters: YouTube guide and parental controls (Restricted Mode hides comments and live chat)</li>
+    <li>Common Sense Media: Parents' Ultimate Guide to YouTube parental controls; Webwise.ie: YouTube guide</li>
+  </ul>
+</section>
+
 <!-- ============================ NOT YET ============================ -->
-<section class="page" id="notyet">
+<section class="page" id="notyet" data-title="Not yet: popular games rated for older children (GTA 6, Call of Duty, FNAF)" data-desc="What's really in GTA 6, Call of Duty, Five Nights at Freddy's, Poppy Playtime and other games children ask for before they're ready, and what to do.">
   <h1>Not yet: games kids ask for before they're ready</h1>
   <p class="lede">These are popular games that primary-age children hear about from YouTube, TikTok, older siblings and friends, even though they're rated for teenagers or adults. Here's what's actually in each one, why children want it, and what to do if your child is already playing it.</p>
   <p class="checked">Age ratings checked 25 November 2026. "Coming soon" is reviewed every week.</p>
@@ -870,7 +964,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ GET AHEAD ============================ -->
-<section class="page" id="ahead">
+<section class="page" id="ahead" data-title="Get ahead: a free 5-week online safety course for families" data-desc="Build safe online habits at home: a 5-week family course with Be Internet Awesome, stories for 5–7s, a family agreement and trusted resources.">
   <h1>Get ahead: safe habits before problems start</h1>
   <p class="lede">The best protection isn't a setting. It's a child who knows what to do when something feels wrong, and who knows they can tell you. Here's a simple plan to build that at home, using free, trusted resources.</p>
   <p class="checked">Links checked 25 November 2026.</p>
@@ -946,7 +1040,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ FIND OUT ============================ -->
-<section class="page" id="findout">
+<section class="page" id="findout" data-title="Find out what your child is playing – Parent Pass" data-desc="How to find out which games and apps your child uses, without turning it into an interrogation, and the warning signs to look for.">
   <h1>Find out what your child is playing</h1>
   <p class="lede">Many parents don't know exactly which games their child plays, or which games inside a game. That's normal. Here's how to find out without turning it into an interrogation.</p>
 
@@ -992,7 +1086,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ WORDS ============================ -->
-<section class="page" id="words">
+<section class="page" id="words" data-title="Gaming words kids use, explained for parents – Parent Pass" data-desc="What AFK, noob, grinding, loot box, Robux, brainrot and other gaming words mean.">
   <h1>Words kids use</h1>
   <p class="lede">Gaming slang you'll hear at the dinner table, and what it means.</p>
   <table>
@@ -1017,7 +1111,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ HELP ============================ -->
-<section class="page" id="help">
+<section class="page" id="help" data-title="Get help: what to do if something happens online – Parent Pass" data-desc="What to do first if something goes wrong in a game, and who to contact in Sweden: police, BRIS, ECPAT and more.">
   <h1>Get help</h1>
   <div class="callout red"><strong>A child is in immediate danger?</strong> Call <strong>112</strong>.</div>
 
@@ -1052,12 +1146,13 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 </section>
 
 <!-- ============================ ABOUT ============================ -->
-<section class="page" id="about">
+<section class="page" id="about" data-title="About Parent Pass" data-desc="Who made Parent Pass, how it is kept up to date, privacy, and how to send corrections or suggestions.">
   <h1>About Parent Pass</h1>
   <p>This guide was put together by a primary educator in Stockholm, for parents and carers who want to understand the games their children play. It covers the games children talk about most, plus a <a href="#notyet">"Not yet" page</a> on popular games rated for older children.</p>
   <h2>How it's kept up to date</h2>
   <ul>
-    <li>Each game's settings, news and popular trends are <strong>checked monthly</strong>.</li>
+    <li>"Right now" news, popular games and upcoming releases are <strong>checked every week</strong>.</li>
+    <li>Parental-control steps, age ratings, help contacts and links are <strong>fact-checked every month</strong> against official sources.</li>
     <li>Every page shows the date it was last checked.</li>
     <li>Big changes, such as a new safety feature or a major regulator decision, are updated as soon as possible.</li>
   </ul>
@@ -1068,15 +1163,48 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <li>"Our rating" is a practical judgement for primary-age children, based on regulator findings, research and how each game works, not an official rating.</li>
     <li>Lawsuits and investigations mentioned are allegations unless a court or regulator has ruled.</li>
   </ul>
-  <h2>Suggestions</h2>
-  <p>Is your child playing something that isn't here? Get in touch and we'll consider adding it.</p>
+  <h2>Privacy</h2>
+  <p>Parent Pass uses no cookies, no advertising and no tracking. Fonts are stored on this site, so nothing is loaded from Google or other companies when you visit. If we count visits, we use a privacy-friendly counter that stores nothing on your device and doesn't identify you. If you send feedback, it is only used to improve the site and, if you give your email, to reply to you.</p>
+  <h2>Suggestions and corrections</h2>
+  <p>Is your child playing something that isn't here, or has something changed in a game? <a href="#feedback">Send us a message</a>. Every message is read.</p>
+</section>
+
+<!-- ============================ FEEDBACK ============================ -->
+<section class="page" id="feedback" data-title="Send feedback – Parent Pass" data-desc="Tell us about a mistake, a game or app you'd like covered, or anything that was confusing.">
+  <h1>Send feedback</h1>
+  <p class="lede">Spotted a mistake, want a game or app added, or found something confusing? Tell us. Every message is read, and it's the best way to make this guide better.</p>
+  <form class="form" name="feedback" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="feedback">
+    <p class="sr"><label>Leave this empty: <input name="bot-field"></label></p>
+    <label for="fb-topic">What is it about?</label>
+    <select id="fb-topic" name="topic">
+      <option>Something is wrong or out of date</option>
+      <option>Please add a game or app</option>
+      <option>Something was confusing</option>
+      <option>Something was helpful</option>
+      <option>Other</option>
+    </select>
+    <label for="fb-msg">Your message</label>
+    <textarea id="fb-msg" name="message" required></textarea>
+    <label for="fb-email">Your email <span class="hint2">Optional. Only if you'd like a reply.</span></label>
+    <input id="fb-email" type="email" name="email" autocomplete="email">
+    <p class="checked">Please don't include your child's name or other personal details.</p>
+    <button class="btn solid" type="submit">Send feedback</button>
+  </form>
+</section>
+
+<!-- ============================ THANKS ============================ -->
+<section class="page" id="thanks" data-title="Thank you – Parent Pass" data-desc="Your feedback has been sent." data-noindex="1">
+  <h1>Thank you!</h1>
+  <p class="lede">Your message has been sent. If you left your email, we'll reply as soon as we can.</p>
+  <p><a href="#home">Back to the home page</a></p>
 </section>
 
 </main>
 
-<footer><span class="flogo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h15A1.5 1.5 0 0 1 21 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5V14a2 2 0 0 0 0-4z"/><path d="M15 6.5v11" stroke-dasharray="1.6 2"/></svg>Parent Pass</span><span>Your pass into the games your kids play. Last checked 24 November 2026.</span><a href="#about">About and disclaimer</a></footer>
+<footer><span class="flogo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h15A1.5 1.5 0 0 1 21 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5V14a2 2 0 0 0 0-4z"/><path d="M15 6.5v11" stroke-dasharray="1.6 2"/></svg>Parent Pass</span><span>Your pass into the games your kids play. Last checked 24 November 2026.</span><a href="#about">About and privacy</a><a href="#feedback">Send feedback</a></footer>
 
-<script>
+<script data-single-only>
 (function(){
   var pages = Array.prototype.slice.call(document.querySelectorAll('section.page'));
   var ids = pages.map(function(p){return p.id;});
@@ -1101,8 +1229,14 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   var framed=false; try{ framed = window.self !== window.top; }catch(e){ framed = true; }
   if (framed){ Array.prototype.forEach.call(document.querySelectorAll('.printbtn'), function(x){ x.style.display='none'; }); }
   route();
-
+})();
+</script>
+<script>
+(function(){
+  var framed=false; try{ framed = window.self !== window.top; }catch(e){ framed = true; }
+  if (framed){ Array.prototype.forEach.call(document.querySelectorAll('.printbtn'), function(x){ x.style.display='none'; }); }
   var q = document.getElementById('q'), hint = document.getElementById('qhint');
+  if (!q) return;
   var cards = Array.prototype.slice.call(document.querySelectorAll('#cards .pass-card'));
   q.addEventListener('input', function(){
     var v = q.value.trim().toLowerCase(), shown = 0;
@@ -1115,7 +1249,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     if (v && !shown && v.length > 2 && older.indexOf(v) !== -1){
       hint.innerHTML = 'This game is on our <a href="#notyet">"Not yet" page</a> of games rated for older children.';
     } else {
-      hint.textContent = v && !shown ? 'Not covered yet. Let us know which game you would like added.' : '';
+      hint.textContent = v && !shown ? 'Not covered yet. Tell us which game you would like added.' : '';
     }
   });
 })();
