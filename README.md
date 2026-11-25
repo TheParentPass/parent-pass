@@ -6,3 +6,4 @@ Clear, practical guides for parents to Roblox, Brawl Stars, Minecraft and Fortni
 
 - The whole site is one file: `index.html`.
 - "Right now" notes are checked weekly; parental-control steps and age ratings are fact-checked monthly against official sources.
+- A "Get ahead" page has a 5-week family online-safety course (Be Internet Awesome), stories for ages 5–7, a family agreement and trusted English and Swedish resources.
