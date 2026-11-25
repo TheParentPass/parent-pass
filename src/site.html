@@ -34,14 +34,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 
 /* top bar */
 .topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
-.topbar .in{max-width:1120px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar .in{max-width:1260px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:10px;font:800 21px/1 var(--display);letter-spacing:-.02em;color:var(--ink);text-decoration:none;margin-right:auto}
 .logo-ic{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--cobalt);color:var(--ticket);transform:rotate(-8deg)}
 .logo-ic .ic{width:26px;height:26px}
-.topbar nav{display:flex;gap:2px;flex-wrap:wrap}
-.topbar nav a{color:var(--ink-2);text-decoration:none;font-size:15px;padding:7px 11px;border-radius:8px}
-.topbar nav a:hover{color:var(--ink);background:var(--fog)}
-.topbar nav a.on{color:var(--cobalt);background:var(--cobalt-soft);font-weight:700}
+.topbar nav{display:flex;gap:5px;flex-wrap:wrap}
+.topbar nav a{display:inline-flex;align-items:center;min-height:36px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--fog);border:1.5px solid var(--line);white-space:nowrap}
+.topbar nav a:hover{background:var(--cobalt-soft);border-color:var(--cobalt);color:var(--cobalt)}
+.topbar nav a.on{color:#fff;background:var(--cobalt);border-color:var(--cobalt)}
 
 main{max-width:1120px;margin:0 auto;padding:30px 22px 90px}
 section.page{display:none}
@@ -217,6 +217,11 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   .passes{grid-template-columns:1fr}
   .rules{grid-template-columns:1fr}
 }
+@media (max-width:1300px){
+  .topbar nav{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+  .topbar nav::-webkit-scrollbar{display:none}
+  .topbar nav a{flex:none}
+}
 @media (max-width:640px){
   body{font-size:17px}
   .topbar{position:static}
@@ -232,7 +237,11 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   .pass-title .glyph{width:52px;height:52px}
   .two{grid-template-columns:1fr}
   .risk p{padding-left:0}
-  .topbar nav a{padding:5px 8px;font-size:14px}
+  .topbar .in{padding:10px 0 0;gap:10px}
+  .logo{padding:0 16px}
+  .topbar nav{flex-wrap:nowrap;overflow-x:auto;width:100%;padding:2px 16px 12px;scroll-padding:0 16px;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .topbar nav::-webkit-scrollbar{display:none}
+  .topbar nav a{min-height:44px;font-size:15px;padding:8px 16px;flex:none}
   .now{padding:28px 18px 14px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -1253,6 +1262,8 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     }
   });
 })();
+
+;(function(){var a=document.querySelector('#nav a.on');var n=document.getElementById('nav');if(a&&n&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-n.clientWidth/2+a.offsetWidth/2;}})();
 </script>
 </body>
 </html>
