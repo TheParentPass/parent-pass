@@ -1249,7 +1249,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     if (v && !shown && v.length > 2 && older.indexOf(v) !== -1){
       hint.innerHTML = 'This game is on our <a href="#notyet">"Not yet" page</a> of games rated for older children.';
     } else {
-      hint.textContent = v && !shown ? 'Not covered yet. Tell us which game you would like added.' : '';
+      if (v && !shown){ hint.innerHTML = 'Not covered yet. <a href="#feedback">Tell us which game you would like added</a>.'; } else { hint.textContent = ''; }
     }
   });
 })();
