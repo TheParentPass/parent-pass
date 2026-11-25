@@ -122,6 +122,18 @@ strong,b{font-weight:700}
 .fields dd{margin:0;font-weight:700;font-size:16px;line-height:1.35}
 .pass-hero .pass-stub{--stub:200px}
 .stub-h{font:700 14px/1.25 var(--display);color:var(--ink)}
+.why{font-size:15px;line-height:1.5}
+.pass>.why{grid-column:1/-1;padding:12px 26px 16px;border-top:1px dashed var(--line);border-radius:0 0 18px 18px}
+.why[open] p{max-width:72ch}
+.pass-stub:has(+.why){border-bottom-right-radius:0}
+.why summary{cursor:pointer;color:var(--cobalt);font-weight:700;list-style:none;display:inline-flex;align-items:center;gap:6px;min-height:32px}
+.why summary::-webkit-details-marker{display:none}
+.why summary::before{content:"";width:0;height:0;border-left:6px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;transition:transform .15s}
+.why[open] summary::before{transform:rotate(90deg)}
+.why p{margin:6px 0 0;color:var(--ink-2)}
+.why b{color:var(--ink)}
+.key{font-size:15px;color:var(--ink-2);margin:18px 0 0;max-width:none!important}
+.key .tag{margin:0 2px}
 .stub-foot{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:10px}
 .pagebar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 0;padding:10px 0;position:sticky;top:59px;z-index:5;background:var(--fog)}
 .jump{display:flex;gap:6px;flex-wrap:wrap}
@@ -233,6 +245,8 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   .pass-stub{border-left:0;border-top:2px dashed var(--line);border-radius:0 0 18px 18px;flex-direction:row;flex-wrap:wrap}
   .pass-stub .meter{flex:1 1 130px}
   .stub-h,.stub-foot{flex-basis:100%}
+  .pass>.why{padding:12px 20px 16px}
+  .pass-stub:has(+.why){border-radius:0}
   .pass-hero .pass-main{padding:22px 20px}
   .pass-title .glyph{width:52px;height:52px}
   .two{grid-template-columns:1fr}
@@ -318,6 +332,8 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     </a>
   </div>
 
+  <p class="key"><b>What the ratings mean.</b> <span class="tag high">High</span> means strangers can contact your child, or there's heavy pressure to spend, unless you step in. <span class="tag med">Moderate</span> means some risks remain, so keep checking in. <span class="tag low">Lower</span> means few risks once it's set up, though normal family rules still apply. These are our own judgements for primary-age children, not official age ratings. Open any guide to see the reasons for its rating.</p>
+
   <div class="now"><span class="pin">This month</span>
     <h2>Coming up: the December spending peak</h2>
     <p>December is the biggest month of the year for in-game events and spending. All four games are running or planning seasonal events:</p>
@@ -367,6 +383,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
       <div class="meter med"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div>
       <div class="stub-foot">Checked 24 November 2026</div>
     </div>
+    <details class="why"><summary>What do these ratings mean?</summary><p><b>Without controls:</b> Strangers, including adults, can chat with your child in games, unsuitable games slip through moderation, and almost every game pushes your child to spend.</p><p><b>With controls set up:</b> Linking your parent account, limiting chat to real-life friends, and setting a spending limit remove most of the risk. Age checks can still be fooled, so keep talking about who they play with.</p></details>
   </div>
   <div class="pagebar">
     <nav class="jump" aria-label="On this page"><a href="#r-what">What they do</a><a href="#r-now">Popular right now</a><a href="#r-risks">Risks</a><a href="#r-controls">Parental controls</a><a href="#r-ask">Talk about it</a></nav>
@@ -474,6 +491,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
       <div class="meter low"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div>
       <div class="stub-foot">Checked 24 November 2026</div>
     </div>
+    <details class="why"><summary>What do these ratings mean?</summary><p><b>Without controls:</b> There's no voice chat, but there is text chat in clubs, strong pressure to spend, and short matches that make it very hard to stop.</p><p><b>With controls set up:</b> Purchase approval and a daily time limit deal with the biggest problems. Under-16 accounts already get stricter chat filters and family-friendly clubs only.</p></details>
   </div>
   <div class="pagebar">
     <nav class="jump" aria-label="On this page"><a href="#b-what">What they do</a><a href="#b-now">Right now</a><a href="#b-risks">Risks</a><a href="#b-controls">Parental controls</a><a href="#b-ask">Talk about it</a></nav>
@@ -583,6 +601,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
       <div class="meter low"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div>
       <div class="stub-foot">Checked 24 November 2026</div>
     </div>
+    <details class="why"><summary>What do these ratings mean?</summary><p><b>Without controls:</b> Playing alone or offline is very safe. Public servers bring chat with strangers, and unofficial downloads can carry viruses.</p><p><b>With controls set up:</b> Blocking multiplayer, or playing only on a private Realm with friends you know, makes it one of the safer games.</p></details>
   </div>
   <div class="pagebar">
     <nav class="jump" aria-label="On this page"><a href="#m-what">What they do</a><a href="#m-now">Right now</a><a href="#m-risks">Risks</a><a href="#m-controls">Parental controls</a><a href="#m-ask">Talk about it</a></nav>
@@ -688,6 +707,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
       <div class="meter med"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class="on"></i><i class=""></i></span><b>Moderate</b></div>
       <div class="stub-foot">Checked 24 November 2026</div>
     </div>
+    <details class="why"><summary>What do these ratings mean?</summary><p><b>Without controls:</b> If chat is switched on, your child can hear and talk to strangers, and the item shop changes daily to push spending.</p><p><b>With controls set up:</b> Chat limited to friends, purchases behind your PIN, and time limits make it much safer. Some spending pressure and rude players remain.</p></details>
   </div>
   <div class="pagebar">
     <nav class="jump" aria-label="On this page"><a href="#f-what">What they do</a><a href="#f-now">Right now</a><a href="#f-risks">Risks</a><a href="#f-controls">Parental controls</a><a href="#f-ask">Talk about it</a></nav>
@@ -796,6 +816,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
       <div class="meter low"><span class="mlabel">With controls set up</span><span class="segs"><i class="on"></i><i class=""></i><i class=""></i></span><b>Lower</b></div>
       <div class="stub-foot">Checked 25 November 2026</div>
     </div>
+    <details class="why"><summary>What do these ratings mean?</summary><p><b>Without controls:</b> Endless Shorts, autoplay that leads to frightening or adult videos, and comments from strangers.</p><p><b>With controls set up:</b> YouTube Kids or a supervised account, with Shorts limited and autoplay off, removes most of the risk. Filters still make mistakes, so stay nearby for younger children.</p></details>
   </div>
   <div class="pagebar">
     <nav class="jump" aria-label="On this page"><a href="#y-which">Which YouTube?</a><a href="#y-risks">Risks</a><a href="#y-controls">Parental controls</a><a href="#y-ask">Talk about it</a></nav>
