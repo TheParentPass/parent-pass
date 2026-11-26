@@ -246,6 +246,13 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   .pass-stub .meter{flex:1 1 130px}
   .stub-h,.stub-foot{flex-basis:100%}
   .pass>.why{padding:12px 20px 16px}
+  table.stack{border:0;background:transparent;overflow:visible}
+  table.stack tr:first-child{display:none}
+  table.stack tr{display:block;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:10px}
+  table.stack td{display:block;border:0;padding:4px 0}
+  table.stack td::before{content:attr(data-l);display:block;font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:1px}
+  table.stack td:first-child{font-size:17px}
+  table.stack td:first-child::before{display:none}
   .pass-stub:has(+.why){border-radius:0}
   .pass-hero .pass-main{padding:22px 20px}
   .pass-title .glyph{width:52px;height:52px}
@@ -349,12 +356,12 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   <div class="callout amber"><strong>Has your child asked for GTA 6, Call of Duty or Five Nights at Freddy's?</strong> These are among the games primary-age children hear about before they're old enough for them. <a href="#notyet">See what's in them, and what to do</a>.</div>
 
   <h2>At a glance</h2>
-  <table>
+  <table class="stack">
     <tr><th>Game</th><th>Official age rating</th><th>Can strangers talk to my child?</th><th>Spending pressure</th><th>Biggest thing to set up</th></tr>
-    <tr><td><a href="#roblox"><b>Roblox</b></a></td><td>Varies by store. Roblox itself uses content labels per game.</td><td>Yes, in-game, unless a parent turns chat off.</td><td>Very high</td><td>Link a parent account; chat off or real-life friends only.</td></tr>
-    <tr><td><a href="#brawl"><b>Brawl Stars</b></a></td><td>PEGI 16 since October 2026 because of paid random items (was PEGI 7). Check the label in your app store.</td><td>Text chat in clubs and teams; no voice chat.</td><td>High</td><td>Purchase approval on the phone or tablet; time limits.</td></tr>
-    <tr><td><a href="#minecraft"><b>Minecraft</b></a></td><td>PEGI 7</td><td>Only on multiplayer servers, Realms or online worlds.</td><td>Low–moderate</td><td>Microsoft Family settings: multiplayer and chat.</td></tr>
-    <tr><td><a href="#fortnite"><b>Fortnite</b></a></td><td>PEGI 12</td><td>Yes, voice and text chat, if a parent allows it.</td><td>High</td><td>Epic parental controls with a PIN.</td></tr>
+    <tr><td data-l="Game"><a href="#roblox"><b>Roblox</b></a></td><td data-l="Official age rating">Varies by store. Roblox itself uses content labels per game.</td><td data-l="Can strangers talk to my child?">Yes, in-game, unless a parent turns chat off.</td><td data-l="Spending pressure">Very high</td><td data-l="Biggest thing to set up">Link a parent account; chat off or real-life friends only.</td></tr>
+    <tr><td data-l="Game"><a href="#brawl"><b>Brawl Stars</b></a></td><td data-l="Official age rating">PEGI 16 since October 2026 because of paid random items (was PEGI 7). Check the label in your app store.</td><td data-l="Can strangers talk to my child?">Text chat in clubs and teams; no voice chat.</td><td data-l="Spending pressure">High</td><td data-l="Biggest thing to set up">Purchase approval on the phone or tablet; time limits.</td></tr>
+    <tr><td data-l="Game"><a href="#minecraft"><b>Minecraft</b></a></td><td data-l="Official age rating">PEGI 7</td><td data-l="Can strangers talk to my child?">Only on multiplayer servers, Realms or online worlds.</td><td data-l="Spending pressure">Low–moderate</td><td data-l="Biggest thing to set up">Microsoft Family settings: multiplayer and chat.</td></tr>
+    <tr><td data-l="Game"><a href="#fortnite"><b>Fortnite</b></a></td><td data-l="Official age rating">PEGI 12</td><td data-l="Can strangers talk to my child?">Yes, voice and text chat, if a parent allows it.</td><td data-l="Spending pressure">High</td><td data-l="Biggest thing to set up">Epic parental controls with a PIN.</td></tr>
   </table>
 
   <h2>The three rules that protect children in every game</h2>
@@ -458,7 +465,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <li><strong>Security:</strong> turn on 2-step verification. Review the friends list together and remove anyone your child hasn't met.</li>
   </ol>
   <div class="callout amber"><strong>Age check:</strong> to chat, your child will be asked to do a face scan (run by a company called Persona, which Roblox says deletes images straight away) or an ID check. If you'd rather avoid this, simply leave chat off. Playing doesn't require a check.</div>
-  <p class="checked">Menu names may differ slightly by device and region. Roblox's own guide is at about.roblox.com/parents.</p>
+  <p class="checked">Menu names may differ slightly by device and region. Roblox's own guide is at <a href="https://about.roblox.com/parents" rel="noopener">about.roblox.com/parents</a>.</p>
 
   <div class="ask" id="r-ask"><h2>Questions to ask your child</h2><ul>
     <li>"What's your favourite Roblox game at the moment? Can you show me how it works?"</li>
@@ -469,7 +476,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h3>Sources</h3>
   <ul class="srcs">
-    <li>Roblox: Kids &amp; Select accounts; Safety by age; Age checks required to chat (2026) – about.roblox.com</li>
+    <li>Roblox: Kids &amp; Select accounts; Safety by age; Age checks required to chat (2026) – <a href="https://about.roblox.com/" rel="noopener">about.roblox.com</a></li>
     <li>eSafety Commissioner (Australia): court-enforceable undertaking from Roblox, Aug 2026</li>
     <li>Netherlands ACM: Digital Services Act investigation into Roblox, Jan 2026</li>
     <li>University of Sydney: Misleading and Deceptive Monetisation in Roblox, May 2026</li>
@@ -560,7 +567,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   </ol>
   <h3>Android (Google Family Link / Play Store)</h3>
   <ol class="steps">
-    <li>Install <em>Google Family Link</em> on your phone and link your child's account.</li>
+    <li>Install <a href="https://families.google/familylink/" rel="noopener"><em>Google Family Link</em></a> on your phone and link your child's account.</li>
     <li>In the Play Store on the child's device: Profile › Settings › <em>Purchase verification</em> (called <em>Authentication</em> on some phones), then require verification for every purchase.</li>
     <li>In Family Link: set daily limits or app-specific time limits.</li>
   </ol>
@@ -570,7 +577,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <li>Make sure the age entered is correct, so your child gets a Young Player account if under 16.</li>
     <li>Show your child how to <strong>mute, block and report</strong> players, and how to leave a Club.</li>
   </ol>
-  <p class="checked">Supercell is testing "Supercell ID Family", which lets parents monitor children's accounts. It can't limit time or block the game, so device controls are still needed. Supercell's guide: supercell.com/parents.</p>
+  <p class="checked">Supercell is testing "Supercell ID Family", which lets parents monitor children's accounts. It can't limit time or block the game, so device controls are still needed. Supercell's guide: <a href="https://supercell.com/parents" rel="noopener">supercell.com/parents</a>.</p>
 
   <div class="ask" id="b-ask"><h2>Questions to ask your child</h2><ul>
     <li>"Which Brawler is your favourite, and why?"</li>
@@ -581,7 +588,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h3>Sources</h3>
   <ul class="srcs">
-    <li>Supercell: Parents' guide; Younger players support article; Teen and Children's safety guides – supercell.com</li>
+    <li>Supercell: Parents' guide; Younger players support article; Teen and Children's safety guides – <a href="https://supercell.com/" rel="noopener">supercell.com</a></li>
     <li>Supercell release notes, Nov 2026, as reported by GameLeap, TradiGame, Timesaver.gg</li>
     <li>klicksafe.de and Elternguide.online: Brawl Stars guidance for parents</li>
     <li>Qustodio: Supercell ID Family; PinkCrow: Brawl Stars explained for parents (age ratings)</li>
@@ -610,13 +617,13 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h2 id="m-what">What your child is actually doing</h2>
   <p>Minecraft is a world made of blocks that your child can dig, build and explore. The <strong>key question for parents is <em>where</em> they're playing</strong>, because the risk depends almost entirely on that:</p>
-  <table>
+  <table class="stack">
     <tr><th>Where</th><th>What it means</th><th>Risk</th></tr>
-    <tr><td><b>Single player</b></td><td>Alone in their own world.</td><td><span class="tag low">Very low</span></td></tr>
-    <tr><td><b>Local / LAN</b></td><td>With people on the same home Wi-Fi.</td><td><span class="tag low">Very low</span></td></tr>
-    <tr><td><b>Realms</b></td><td>A private, invite-only world (paid subscription)</td><td><span class="tag low">Low</span></td></tr>
-    <tr><td><b>Featured servers</b></td><td>Big official partner servers with mini-games and many strangers.</td><td><span class="tag med">Moderate</span></td></tr>
-    <tr><td><b>Other public servers</b></td><td>Thousands of independent servers, joined by typing an address. Moderation varies hugely.</td><td><span class="tag high">Higher</span></td></tr>
+    <tr><td data-l="Where"><b>Single player</b></td><td data-l="What it means">Alone in their own world.</td><td data-l="Risk"><span class="tag low">Very low</span></td></tr>
+    <tr><td data-l="Where"><b>Local / LAN</b></td><td data-l="What it means">With people on the same home Wi-Fi.</td><td data-l="Risk"><span class="tag low">Very low</span></td></tr>
+    <tr><td data-l="Where"><b>Realms</b></td><td data-l="What it means">A private, invite-only world (paid subscription)</td><td data-l="Risk"><span class="tag low">Low</span></td></tr>
+    <tr><td data-l="Where"><b>Featured servers</b></td><td data-l="What it means">Big official partner servers with mini-games and many strangers.</td><td data-l="Risk"><span class="tag med">Moderate</span></td></tr>
+    <tr><td data-l="Where"><b>Other public servers</b></td><td data-l="What it means">Thousands of independent servers, joined by typing an address. Moderation varies hugely.</td><td data-l="Risk"><span class="tag high">Higher</span></td></tr>
   </table>
   <p><strong>Two modes:</strong> <em>Creative</em> (unlimited blocks, just build) and <em>Survival</em> (gather resources and survive monsters at night).</p>
   <p><strong>Two editions:</strong> <em>Bedrock</em> (phones, tablets, consoles, Windows) and <em>Java</em> (PC/Mac, used for most mods and big independent servers). Ask which one your child plays.</p>
@@ -668,7 +675,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h2 id="m-controls">Set up parental controls, step by step</h2>
   <ol class="steps">
-    <li><strong>Create a family group:</strong> go to family.microsoft.com, or install the <em>Xbox Family Settings</em> app, and sign in with your own Microsoft account. Add your child's Microsoft account, the one they use for Minecraft.</li>
+    <li><strong>Create a family group:</strong> go to <a href="https://family.microsoft.com/" rel="noopener">family.microsoft.com</a> (no Microsoft account yet? Create one free at <a href="https://account.microsoft.com/" rel="noopener">account.microsoft.com</a>), or install the <em>Xbox Family Settings</em> app, and sign in with your own Microsoft account. Add your child's Microsoft account, the one they use for Minecraft.</li>
     <li><strong>Multiplayer:</strong> under your child › <em>Privacy &amp; online safety</em> (or <em>Online safety</em> in the app) › <em>You can join multiplayer games</em>: Block, or Allow. Blocking stops servers, Realms and online worlds. Changes can take several hours, sometimes a day, to take effect.</li>
     <li><strong>Communication:</strong> in the same section, set who can talk to your child with voice, text or invites to <em>Friends</em>, or block it.</li>
     <li><strong>Friends:</strong> require approval for friend requests if your child is younger.</li>
@@ -784,7 +791,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <li><strong>Time limits:</strong> set daily Play Time (and Create Time) limits, and turn on weekly playtime reports by email.</li>
     <li><strong>Console:</strong> set chat and spending limits in the PlayStation, Xbox or Nintendo parental controls too.</li>
   </ol>
-  <p class="checked">Epic's guide: safety.epicgames.com/parental-controls. These controls also cover Rocket League and Fall Guys.</p>
+  <p class="checked">Epic's guide: <a href="https://safety.epicgames.com/parental-controls" rel="noopener">safety.epicgames.com/parental-controls</a>. These controls also cover Rocket League and Fall Guys.</p>
 
   <div class="ask" id="f-ask"><h2>Questions to ask your child</h2><ul>
     <li>"Which mode do you play most: Battle Royale, LEGO, or islands?"</li>
@@ -795,7 +802,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h3>Sources</h3>
   <ul class="srcs">
-    <li>Epic Games: Safety &amp; Security Center, Parental Controls, Cabined Accounts – safety.epicgames.com</li>
+    <li>Epic Games: Safety &amp; Security Center, Parental Controls, Cabined Accounts – <a href="https://safety.epicgames.com/" rel="noopener">safety.epicgames.com</a></li>
     <li>US Federal Trade Commission: Epic Games settlements, Dec 2022 / Mar 2023</li>
     <li>FRVR (Oct 2026): Fortnite parental controls, incl. Play Time/Create Time limits</li>
     <li>theclick.gg / Insider Gaming (Nov 2026): 5 December event and Battle Pass</li>
@@ -829,11 +836,11 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h2 id="y-which">Which YouTube is right for your child?</h2>
   <p>YouTube offers three different experiences, each with different protections. The most important thing is that your child is <strong>signed in to the right one on every device</strong>, including the TV.</p>
-  <table>
+  <table class="stack">
     <tr><th>Option</th><th>Who it's for</th><th>What's different</th></tr>
-    <tr><td><b>YouTube Kids</b><br>(separate app, or a profile on the TV)</td><td>Up to 12, best for under-9s</td><td>A smaller, family-friendly library. No public comments or messaging. You choose an age level (4 and under, 5–8, or 9–12), or approve every video yourself.</td></tr>
-    <tr><td><b>Supervised account</b><br>(regular YouTube, managed by you)</td><td>Under 13, when you decide they're ready</td><td>Looks like normal YouTube. You choose one of three content levels: <em>Explore</em> (roughly 9+), <em>Explore More</em> (roughly 13+) or <em>Most of YouTube</em>. Some features, like comments, are restricted.</td></tr>
-    <tr><td><b>Teen account</b></td><td>13–17</td><td>All of YouTube except age-restricted videos, with some built-in protections. Parents can link it for supervision.</td></tr>
+    <tr><td data-l="Option"><b>YouTube Kids</b><br>(separate app, or a profile on the TV)</td><td data-l="Who it&#x27;s for">Up to 12, best for under-9s</td><td data-l="What&#x27;s different">A smaller, family-friendly library. No public comments or messaging. You choose an age level (4 and under, 5–8, or 9–12), or approve every video yourself.</td></tr>
+    <tr><td data-l="Option"><b>Supervised account</b><br>(regular YouTube, managed by you)</td><td data-l="Who it&#x27;s for">Under 13, when you decide they're ready</td><td data-l="What&#x27;s different">Looks like normal YouTube. You choose one of three content levels: <em>Explore</em> (roughly 9+), <em>Explore More</em> (roughly 13+) or <em>Most of YouTube</em>. Some features, like comments, are restricted.</td></tr>
+    <tr><td data-l="Option"><b>Teen account</b></td><td data-l="Who it&#x27;s for">13–17</td><td data-l="What&#x27;s different">All of YouTube except age-restricted videos, with some built-in protections. Parents can link it for supervision.</td></tr>
   </table>
   <div class="callout amber"><strong>The biggest gap: watching while signed out.</strong> None of these protections apply if your child watches YouTube signed out, on a shared tablet, on the family TV or on a grandparent's phone. A signed-out child sees ordinary YouTube.</div>
 
@@ -854,7 +861,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h2 id="y-controls">Set up parental controls, step by step</h2>
   <ol class="steps">
-    <li><strong>Create a Google Account for your child</strong> through Google Family Link (free app), if they don't have one. This links their account to yours.</li>
+    <li><strong>Create a Google Account for your child</strong> through <a href="https://families.google/familylink/" rel="noopener">Google Family Link</a> (free app), if they don't have one. This links their account to yours.</li>
     <li><strong>Choose the experience:</strong> during set-up, pick <em>YouTube Kids</em> or a <em>supervised experience</em> on YouTube, and choose the content level.</li>
     <li><strong>Find the settings later</strong> in the YouTube app on your phone: <em>You</em> › <em>Settings</em> › <em>Family Center</em>. Or in Family Link: your child › <em>Controls</em> › <em>Content restrictions</em> › YouTube.</li>
     <li><strong>Shorts:</strong> in Family Center, choose your child's account and open the time management settings. Set a daily Shorts limit, or set it to zero to turn the Shorts feed off.</li>
@@ -862,7 +869,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <li><strong>TVs and consoles:</strong> open YouTube, go to "Who's watching?" and choose your child's profile. Remove or protect your own profile so they can't switch to it.</li>
     <li><strong>Shared devices:</strong> on any device where your child might watch signed out, turn on <em>Restricted Mode</em> in YouTube's settings. It hides comments and live chats and filters out some mature videos, but it's not as strong as a supervised account.</li>
   </ol>
-  <p class="checked">YouTube's guide: youtube.com/myfamily. Google's help page: "Parental controls &amp; settings for supervised kid accounts on YouTube".</p>
+  <p class="checked">YouTube's guide: <a href="https://www.youtube.com/myfamily" rel="noopener">youtube.com/myfamily</a>. Google's help page: "Parental controls &amp; settings for supervised kid accounts on YouTube".</p>
 
   <div class="ask" id="y-ask"><h2>Questions to ask your child</h2><ul>
     <li>"Who's your favourite YouTuber? Can you show me a video?"</li>
@@ -873,7 +880,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h3>Sources</h3>
   <ul class="srcs">
-    <li>YouTube: youtube.com/myfamily; "A decade of building for teens and families", YouTube blog, Jan 2026</li>
+    <li>YouTube: <a href="https://www.youtube.com/myfamily" rel="noopener">youtube.com/myfamily</a>; "A decade of building for teens and families", YouTube blog, Jan 2026</li>
     <li>Google YouTube Help: supervised experiences for pre-teens; parental controls for supervised kid accounts; understand your choices as a family</li>
     <li>YouTube blog: "Helping families across Europe build healthy digital habits" (Shorts feed limit in Europe, 2026)</li>
     <li>Internet Matters: YouTube guide and parental controls (Restricted Mode hides comments and live chat)</li>
@@ -983,7 +990,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h3>Sources</h3>
   <ul class="srcs">
-    <li>PEGI rating for Valorant: pegi.info (checked 25 Nov 2026)</li>
+    <li>PEGI rating for Valorant: <a href="https://pegi.info/" rel="noopener">pegi.info</a> (checked 25 Nov 2026)</li>
     <li>GTA 6 PEGI 18 and content labels: reporting of PEGI decision and store listings, Nov 2026 (outputlag.com, ibtimes.co.uk)</li>
     <li>Call of Duty: Modern Warfare 4 release date: callofduty.com; PEGI 18 label: Currys UK listing</li>
     <li>Apex Legends PEGI 16: Internet Matters, Hwb (Welsh Government)</li>
@@ -1013,13 +1020,13 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h2 id="a-course">A 5-week family course (ages 7–12)</h2>
   <p>This uses <strong>Be Internet Awesome</strong>, Google's free online-safety programme, which many schools use. It has a family guide and a free browser game, <strong>Interland</strong>, with one world for each lesson. Plan about 20 minutes a week: your child plays, then you have one short conversation.</p>
-  <table>
+  <table class="stack">
     <tr><th>Week</th><th>Theme</th><th>Play in Interland</th><th>Talk about it</th></tr>
-    <tr><td><b>1</b></td><td>Share with care</td><td>Mindful Mountain</td><td>"What's OK to post about yourself, and what should stay private?"</td></tr>
-    <tr><td><b>2</b></td><td>Don't fall for fake</td><td>Reality River</td><td>"How can you tell if a message or a 'free Robux' offer is a scam?"</td></tr>
-    <tr><td><b>3</b></td><td>Secure your secrets</td><td>Tower of Treasure</td><td>"What makes a strong password? Who is allowed to know yours?"</td></tr>
-    <tr><td><b>4</b></td><td>It's cool to be kind</td><td>Kind Kingdom</td><td>"What would you do if someone was being mean to a friend in a game?"</td></tr>
-    <tr><td><b>5</b></td><td>When in doubt, talk it out</td><td>No game: talk instead</td><td>"Who are three adults you could tell if something online upset you?" Then sign the family pledge together.</td></tr>
+    <tr><td data-l="Week"><b>1</b></td><td data-l="Theme">Share with care</td><td data-l="Play in Interland">Mindful Mountain</td><td data-l="Talk about it">"What's OK to post about yourself, and what should stay private?"</td></tr>
+    <tr><td data-l="Week"><b>2</b></td><td data-l="Theme">Don't fall for fake</td><td data-l="Play in Interland">Reality River</td><td data-l="Talk about it">"How can you tell if a message or a 'free Robux' offer is a scam?"</td></tr>
+    <tr><td data-l="Week"><b>3</b></td><td data-l="Theme">Secure your secrets</td><td data-l="Play in Interland">Tower of Treasure</td><td data-l="Talk about it">"What makes a strong password? Who is allowed to know yours?"</td></tr>
+    <tr><td data-l="Week"><b>4</b></td><td data-l="Theme">It's cool to be kind</td><td data-l="Play in Interland">Kind Kingdom</td><td data-l="Talk about it">"What would you do if someone was being mean to a friend in a game?"</td></tr>
+    <tr><td data-l="Week"><b>5</b></td><td data-l="Theme">When in doubt, talk it out</td><td data-l="Play in Interland">No game: talk instead</td><td data-l="Talk about it">"Who are three adults you could tell if something online upset you?" Then sign the family pledge together.</td></tr>
   </table>
   <div class="callout green"><strong>Finish with a certificate.</strong> The Be Internet Awesome family page has a free family guide, a family pledge and a certificate to print. Children love having something to show for it. <a href="https://beinternetawesome.withgoogle.com/en_us/families" rel="noopener">Be Internet Awesome for families</a> · <a href="https://beinternetawesome.withgoogle.com/en_us/interland" rel="noopener">Play Interland</a></div>
   <p class="checked">Tip: let your child teach you the game. Explaining it back is how they remember it.</p>
@@ -1042,14 +1049,14 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 
   <h2 id="a-links">Trusted resources</h2>
   <p>Only a few, and only from non-profit or official sources.</p>
-  <table>
+  <table class="stack">
     <tr><th>Resource</th><th>Who it's for</th><th>Language</th></tr>
-    <tr><td><a href="https://beinternetawesome.withgoogle.com/en_us/families" rel="noopener"><b>Be Internet Awesome</b></a><br>Family guide, Interland game, pledge and certificate</td><td>Families with children aged about 7–12</td><td>English (and other languages)</td></tr>
-    <tr><td><a href="https://www.childnet.com/resources/smartie-the-penguin" rel="noopener"><b>Childnet</b></a><br>Stories for young children, family agreement</td><td>Ages 3–7, and parents</td><td>English</td></tr>
-    <tr><td><a href="https://natklok.sakerhetskollen.se" rel="noopener"><b>Nätklok (Säkerhetskollen)</b></a><br>Fun exercises for parents and children to do together</td><td>Families</td><td>Swedish</td></tr>
-    <tr><td><a href="https://internetkunskap.se" rel="noopener"><b>Internetkunskap (Internetstiftelsen)</b></a><br>Easy guides and the podcast <em>Våra barn och nätet</em></td><td>Parents</td><td>Swedish</td></tr>
-    <tr><td><a href="https://resourcecentre.savethechildren.net/library/stopp-min-kropp-pa-natet" rel="noopener"><b>Stopp! Min kropp! – på nätet (Rädda Barnen)</b></a><br>Films and a quiz about what is and isn't OK online</td><td>Children to explore with an adult</td><td>Swedish only</td></tr>
-    <tr><td><a href="#help"><b>Bris and other help in Sweden</b></a><br>If something has already happened</td><td>Children and parents</td><td>Swedish and English</td></tr>
+    <tr><td data-l="Resource"><a href="https://beinternetawesome.withgoogle.com/en_us/families" rel="noopener"><b>Be Internet Awesome</b></a><br>Family guide, Interland game, pledge and certificate</td><td data-l="Who it&#x27;s for">Families with children aged about 7–12</td><td data-l="Language">English (and other languages)</td></tr>
+    <tr><td data-l="Resource"><a href="https://www.childnet.com/resources/smartie-the-penguin" rel="noopener"><b>Childnet</b></a><br>Stories for young children, family agreement</td><td data-l="Who it&#x27;s for">Ages 3–7, and parents</td><td data-l="Language">English</td></tr>
+    <tr><td data-l="Resource"><a href="https://natklok.sakerhetskollen.se" rel="noopener"><b>Nätklok (Säkerhetskollen)</b></a><br>Fun exercises for parents and children to do together</td><td data-l="Who it&#x27;s for">Families</td><td data-l="Language">Swedish</td></tr>
+    <tr><td data-l="Resource"><a href="https://internetkunskap.se" rel="noopener"><b>Internetkunskap (Internetstiftelsen)</b></a><br>Easy guides and the podcast <em>Våra barn och nätet</em></td><td data-l="Who it&#x27;s for">Parents</td><td data-l="Language">Swedish</td></tr>
+    <tr><td data-l="Resource"><a href="https://resourcecentre.savethechildren.net/library/stopp-min-kropp-pa-natet" rel="noopener"><b>Stopp! Min kropp! – på nätet (Rädda Barnen)</b></a><br>Films and a quiz about what is and isn't OK online</td><td data-l="Who it&#x27;s for">Children to explore with an adult</td><td data-l="Language">Swedish only</td></tr>
+    <tr><td data-l="Resource"><a href="#help"><b>Bris and other help in Sweden</b></a><br>If something has already happened</td><td data-l="Who it&#x27;s for">Children and parents</td><td data-l="Language">Swedish and English</td></tr>
   </table>
 
   <div class="ask" id="a-ask"><h2>Questions to start with</h2><ul>
@@ -1089,15 +1096,15 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   </div>
 
   <h2>2. Check the devices</h2>
-  <table>
+  <table class="stack">
     <tr><th>Device</th><th>Where to look</th></tr>
-    <tr><td><b>iPhone / iPad</b></td><td>Settings › Screen Time › <em>See All App &amp; Website Activity</em> shows which apps are used and for how long.</td></tr>
-    <tr><td><b>Android</b></td><td>Google Family Link app on your phone › your child › app activity.</td></tr>
-    <tr><td><b>Xbox / Minecraft</b></td><td>Xbox Family Settings app › activity reports.</td></tr>
-    <tr><td><b>Nintendo Switch</b></td><td>Nintendo Switch Parental Controls app › daily summary.</td></tr>
-    <tr><td><b>PlayStation</b></td><td>Family Management in your PlayStation account › play time.</td></tr>
-    <tr><td><b>Roblox</b></td><td>Linked parent account › your child's most-played games and screen time.</td></tr>
-    <tr><td><b>Fortnite</b></td><td>Epic parental controls › weekly playtime report by email.</td></tr>
+    <tr><td data-l="Device"><b>iPhone / iPad</b></td><td data-l="Where to look">Settings › Screen Time › <em>See All App &amp; Website Activity</em> shows which apps are used and for how long.</td></tr>
+    <tr><td data-l="Device"><b>Android</b></td><td data-l="Where to look"><a href="https://families.google/familylink/" rel="noopener">Google Family Link</a> app on your phone › your child › app activity.</td></tr>
+    <tr><td data-l="Device"><b>Xbox / Minecraft</b></td><td data-l="Where to look">Xbox Family Settings app › activity reports.</td></tr>
+    <tr><td data-l="Device"><b>Nintendo Switch</b></td><td data-l="Where to look">Nintendo Switch Parental Controls app › daily summary.</td></tr>
+    <tr><td data-l="Device"><b>PlayStation</b></td><td data-l="Where to look">Family Management in your PlayStation account › play time.</td></tr>
+    <tr><td data-l="Device"><b>Roblox</b></td><td data-l="Where to look">Linked parent account › your child's most-played games and screen time.</td></tr>
+    <tr><td data-l="Device"><b>Fortnite</b></td><td data-l="Where to look">Epic parental controls › weekly playtime report by email.</td></tr>
   </table>
 
   <h2>3. Know the "hidden" apps</h2>
@@ -1119,24 +1126,24 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 <section class="page" id="words" data-title="Gaming words kids use, explained for parents – Parent Pass" data-desc="What AFK, noob, grinding, loot box, Robux, brainrot and other gaming words mean.">
   <h1>Words kids use</h1>
   <p class="lede">Gaming slang you'll hear at the dinner table, and what it means.</p>
-  <table>
+  <table class="stack">
     <tr><th>Word</th><th>Meaning</th></tr>
-    <tr><td><b>AFK</b></td><td>"Away from keyboard": not playing for a moment.</td></tr>
-    <tr><td><b>Noob</b></td><td>A beginner, often used as a mild insult.</td></tr>
-    <tr><td><b>GG</b></td><td>"Good game": polite at the end of a match.</td></tr>
-    <tr><td><b>Grinding</b></td><td>Repeating tasks for a long time to earn rewards.</td></tr>
-    <tr><td><b>Skin</b></td><td>A cosmetic outfit for a character.</td></tr>
-    <tr><td><b>Battle Pass / Brawl Pass</b></td><td>A paid reward track that lasts a season.</td></tr>
-    <tr><td><b>Loot box / Starr Drop / Mystery box</b></td><td>A random reward. Can feel like gambling.</td></tr>
-    <tr><td><b>Robux / V-Bucks / Gems / Minecoins</b></td><td>In-game currencies bought with real money.</td></tr>
-    <tr><td><b>Trading / Trust trade</b></td><td>Swapping items with others. "Trust trades" are usually scams.</td></tr>
-    <tr><td><b>Server</b></td><td>An online world or match run by a game company or by other players.</td></tr>
-    <tr><td><b>Lobby</b></td><td>The waiting area before a match.</td></tr>
-    <tr><td><b>Fill / Randoms</b></td><td>Being teamed up with strangers.</td></tr>
-    <tr><td><b>Toxic</b></td><td>Rude, aggressive behaviour from other players.</td></tr>
-    <tr><td><b>Brainrot</b></td><td>Absurd internet meme content (and characters), very popular with children in 2025–26.</td></tr>
-    <tr><td><b>Ranked</b></td><td>Competitive mode where you climb or drop in rank.</td></tr>
-    <tr><td><b>Gifting</b></td><td>Buying items for someone else. Be wary of strangers who offer it.</td></tr>
+    <tr><td data-l="Word"><b>AFK</b></td><td data-l="Meaning">"Away from keyboard": not playing for a moment.</td></tr>
+    <tr><td data-l="Word"><b>Noob</b></td><td data-l="Meaning">A beginner, often used as a mild insult.</td></tr>
+    <tr><td data-l="Word"><b>GG</b></td><td data-l="Meaning">"Good game": polite at the end of a match.</td></tr>
+    <tr><td data-l="Word"><b>Grinding</b></td><td data-l="Meaning">Repeating tasks for a long time to earn rewards.</td></tr>
+    <tr><td data-l="Word"><b>Skin</b></td><td data-l="Meaning">A cosmetic outfit for a character.</td></tr>
+    <tr><td data-l="Word"><b>Battle Pass / Brawl Pass</b></td><td data-l="Meaning">A paid reward track that lasts a season.</td></tr>
+    <tr><td data-l="Word"><b>Loot box / Starr Drop / Mystery box</b></td><td data-l="Meaning">A random reward. Can feel like gambling.</td></tr>
+    <tr><td data-l="Word"><b>Robux / V-Bucks / Gems / Minecoins</b></td><td data-l="Meaning">In-game currencies bought with real money.</td></tr>
+    <tr><td data-l="Word"><b>Trading / Trust trade</b></td><td data-l="Meaning">Swapping items with others. "Trust trades" are usually scams.</td></tr>
+    <tr><td data-l="Word"><b>Server</b></td><td data-l="Meaning">An online world or match run by a game company or by other players.</td></tr>
+    <tr><td data-l="Word"><b>Lobby</b></td><td data-l="Meaning">The waiting area before a match.</td></tr>
+    <tr><td data-l="Word"><b>Fill / Randoms</b></td><td data-l="Meaning">Being teamed up with strangers.</td></tr>
+    <tr><td data-l="Word"><b>Toxic</b></td><td data-l="Meaning">Rude, aggressive behaviour from other players.</td></tr>
+    <tr><td data-l="Word"><b>Brainrot</b></td><td data-l="Meaning">Absurd internet meme content (and characters), very popular with children in 2025–26.</td></tr>
+    <tr><td data-l="Word"><b>Ranked</b></td><td data-l="Meaning">Competitive mode where you climb or drop in rank.</td></tr>
+    <tr><td data-l="Word"><b>Gifting</b></td><td data-l="Meaning">Buying items for someone else. Be wary of strangers who offer it.</td></tr>
   </table>
 </section>
 
@@ -1155,15 +1162,15 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
   </ol>
 
   <h2>Who to contact in Sweden</h2>
-  <table>
+  <table class="stack">
     <tr><th>Situation</th><th>Contact</th></tr>
-    <tr><td>Emergency</td><td><strong>112</strong></td></tr>
-    <tr><td>Grooming, sexual messages or images, threats, sextortion</td><td>Polisen: <strong>114 14</strong>, or report online at polisen.se</td></tr>
-    <tr><td>A child needs someone to talk to</td><td>BRIS: <strong>116 111</strong> (phone, text, chat and email, open 24 hours)</td></tr>
-    <tr><td>You're an adult worried about a child</td><td>BRIS adult line: <strong>0771-50 50 50</strong> (Swedish, English and Arabic)</td></tr>
-    <tr><td>Reporting child sexual abuse material online</td><td>ECPAT Sverige hotline at ecpat.se</td></tr>
-    <tr><td>Advice on children and media</td><td>Mediemyndigheten at mediemyndigheten.se</td></tr>
-    <tr><td>At school</td><td>Your child's teacher or the school's safeguarding or student-welfare lead</td></tr>
+    <tr><td data-l="Situation">Emergency</td><td data-l="Contact"><strong>112</strong></td></tr>
+    <tr><td data-l="Situation">Grooming, sexual messages or images, threats, sextortion</td><td data-l="Contact">Polisen: <strong>114 14</strong>, or report online at <a href="https://polisen.se/" rel="noopener">polisen.se</a></td></tr>
+    <tr><td data-l="Situation">A child needs someone to talk to</td><td data-l="Contact">BRIS: <strong>116 111</strong> (phone, text, chat and email, open 24 hours), or <a href="https://www.bris.se/" rel="noopener">bris.se</a></td></tr>
+    <tr><td data-l="Situation">You're an adult worried about a child</td><td data-l="Contact">BRIS adult line: <strong>0771-50 50 50</strong> (Swedish, English and Arabic)</td></tr>
+    <tr><td data-l="Situation">Reporting child sexual abuse material online</td><td data-l="Contact">ECPAT Sverige hotline at <a href="https://www.ecpat.se/" rel="noopener">ecpat.se</a></td></tr>
+    <tr><td data-l="Situation">Advice on children and media</td><td data-l="Contact">Mediemyndigheten at <a href="https://www.mediemyndigheten.se/" rel="noopener">mediemyndigheten.se</a></td></tr>
+    <tr><td data-l="Situation">At school</td><td data-l="Contact">Your child's teacher or the school's safeguarding or student-welfare lead</td></tr>
   </table>
 
   <h2>Reporting inside the games</h2>
@@ -1171,7 +1178,7 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
     <li><strong>Roblox:</strong> the report button on a player's profile or in the game menu; Roblox Safety Center.</li>
     <li><strong>Brawl Stars:</strong> the player's profile › report; Settings › Help and Support.</li>
     <li><strong>Minecraft:</strong> report in-game (Bedrock) or to the server's moderators; Xbox reporting.</li>
-    <li><strong>Fortnite:</strong> menu › Report Player (includes voice reports); safety.epicgames.com.</li>
+    <li><strong>Fortnite:</strong> menu › Report Player (includes voice reports); <a href="https://safety.epicgames.com/" rel="noopener">safety.epicgames.com</a>.</li>
   </ul>
 </section>
 
