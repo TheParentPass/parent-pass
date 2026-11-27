@@ -7,12 +7,12 @@
 // Links like href="#roblox" or href="#r-controls" are rewritten to the right page.
 // Files in public/ (fonts, robots.txt, Google verification) are copied as they are.
 //
-// Run locally with:  node build.js   (Netlify runs it automatically on every deploy)
+// Run locally with:  node build.js   (GitHub Pages runs it automatically on every push to main)
 
 const fs = require('fs');
 const path = require('path');
 
-const SITE = 'https://parent-pass.netlify.app';
+const SITE = 'https://parentpass.se';
 // Visitor counts (GoatCounter, no cookies). Put the site code here, e.g. 'parentpass', to switch on.
 const GOATCOUNTER = 'parentpass';
 

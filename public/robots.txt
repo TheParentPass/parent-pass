@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parent-pass.netlify.app/sitemap.xml
+Sitemap: https://parentpass.se/sitemap.xml
