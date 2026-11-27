@@ -1214,9 +1214,12 @@ footer{max-width:1120px;margin:0 auto;padding:22px 22px 44px;font-size:14px;colo
 <section class="page" id="feedback" data-title="Send feedback – Parent Pass" data-desc="Tell us about a mistake, a game or app you'd like covered, or anything that was confusing.">
   <h1>Send feedback</h1>
   <p class="lede">Spotted a mistake, want a game or app added, or found something confusing? Tell us. Every message is read, and it's the best way to make this guide better.</p>
-  <form class="form" name="feedback" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="feedback">
-    <p class="sr"><label>Leave this empty: <input name="bot-field"></label></p>
+  <form class="form" name="feedback" method="POST" action="https://api.web3forms.com/submit">
+    <input type="hidden" name="access_key" value="7c9963d1-dd3e-499c-be61-733f6d93159f">
+    <input type="hidden" name="subject" value="New Parent Pass feedback">
+    <input type="hidden" name="from_name" value="Parent Pass website">
+    <input type="hidden" name="redirect" value="https://parentpass.se/thanks/">
+    <p class="sr"><label>Leave this empty: <input type="checkbox" name="botcheck" tabindex="-1"></label></p>
     <label for="fb-topic">What is it about?</label>
     <select id="fb-topic" name="topic">
       <option>Something is wrong or out of date</option>
